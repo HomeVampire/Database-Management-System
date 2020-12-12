@@ -1,0 +1,22 @@
+SQL> INSERT INTO DEPT2 VALUES(01,'MANAGER');
+
+SQL> INSERT INTO DEPT2 VALUES(02,'CLARK');
+
+SQL> SELECT * FROM DEPT2;
+
+   DEPT_ID DNAME                                                                
+---------- ----------                                                           
+         1 MANAGER                                                              
+         2 CLARK                                                                
+
+SQL> INSERT INTO EMP2 VALUES(111,'DEEP','CLEARK','12-FEB-1998',25000,1500,2);
+
+SQL> INSERT INTO EMP2 VALUES(222,'RAHUL','MANAGER','12-FEB-1998',25000,1500,1);
+
+SQL> SELECT * FROM EMP2;
+
+     EMPNO ENAME      EDESIGNATI DATE_OF_R     SALARY  COMISSION    DEPT_ID     
+---------- ---------- ---------- --------- ---------- ---------- ----------     
+       111 DEEP       CLEARK     12-FEB-98      25000       1500          2     
+       222 RAHUL      MANAGER    12-FEB-98      25000       1500          1     
+

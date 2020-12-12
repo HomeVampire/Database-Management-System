@@ -1,0 +1,84 @@
+SQL> --19. COUNT THE NUMBER OF DIFFERENT CITIES FROM WHERE THE STUDENTS HAVE COME.
+SQL> SELECT COUNT (DISTINCT CITY) FROM STUDENT;
+
+COUNT(DISTINCTCITY)                                                             
+-------------------                                                             
+                  2                                                             
+
+SQL> --20. FIND THE SUM OF THE FEES COLLECTED FOR THE MONTH OF JANUARY FOR THE YEAR 2009 FROM THE FEES RELATION (NOTE THAT THE MONTH OF JANUARY IS REPRESENTED BY THE MONTH VALUE 1 ).
+SQL> SELECT SUM(AMOUNT) FROM FEES WHERE MONTH=1;
+
+SUM(AMOUNT)                                                                     
+-----------                                                                     
+       4670                                                                     
+
+SQL> --21. FIND THE AVERAGE MARKS IN THE OPTIONAL SUBJECT FROM THE MARKS TABLE  FOR SELECTION  EXAMINATION OF  THE YEAR 2009.
+SQL> SELECT AVG(OPT) FROM MARKS WHERE YEAR=2009;
+
+  AVG(OPT)                                                                      
+----------                                                                      
+        87                                                                      
+
+SQL> --22. FIND THE MAXIMUM AND MINIMUM MARKS IN FIRST LANGUAGE (FLANG) FROM THE MARKS TABLE FOR ANNUAL EXAMINATION OF THE YEAR 2009.
+SQL> SELECT MAX(FLANG),MIN(FLANG) FROM MARKS WHERE YEAR=2009;
+
+MA MI                                                                           
+-- --                                                                           
+65 29                                                                           
+
+SQL> --23. FIND A COUNT OF EACH INDIVIDUAL CITY FROM WHERE THE STUDENTS  ARE COMING.
+SQL> SELECT CITY,COUNT(SID) FROM STUDENT GROUP BY CITY;
+
+CITY         COUNT(SID)
+------------ ----------
+KOLKATA               7
+HOWRAH                2                                                                    
+
+SQL> --24. FIND A COUNT OF STUDENT STRENGTH IN EACH CLASS AND SECTION.
+SQL> SELECT CLASS,SEC,COUNT(SID) FROM STUDENT GROUP BY CLASS,SEC;
+
+     CLASS S COUNT(SID)
+---------- - ----------
+        11 E          2
+        12 C          3
+        11 D          2
+        12 E          2
+
+SQL> --25. FIND A COUNT OF THE STUDENT STRENGTH IN EACH CLASS AND SECTION  WHOSE STUDENT COUNT VALUE IS GREATER THAN 2 FOR A GIVEN CLASS AND SECTION.
+SQL> SELECT COUNT(SID) AS STU_STRENGTH,CLASS,SEC FROM STUDENT GROUP BY CLASS,SEC
+ HAVING COUNT(SID) > 1;
+
+STU_STRENGTH      CLASS S
+------------ ---------- -
+           2         11 E
+           3         12 C
+           2         11 D
+           2         12 E
+
+SQL> --26. DISPLAY THE AVERAGE OF MARKS FOR THE OPTIONAL SUBJECT OPT IN THE DIFFERENT EXAM CONDUCT IN THE YEAR 2009.
+SQL> SELECT EXAM,AVG(OPT) FROM MARKS GROUP BY EXAM;
+
+EXAM         AVG(OPT)
+---------- ----------
+ANNUAL          84.25
+SELECTION  87.6666667
+
+SQL> --27. DISPLAY THE ID,CLASS AND SECTION OF THE STUDENT WITH ID NUMBERS  9175, 9234, AND 9458.
+SQL> SELECT SID,CLASS,SEC FROM STUDENT WHERE SID=9175 OR SID=9234 OR SID=9458;
+
+       SID      CLASS S                                                         
+---------- ---------- -                                                         
+      9175         11 E                                                         
+      9234         12 C                                                         
+      9458         12 E                                                         
+
+SQL> --28. DISPLAY THE ID, FIRST LANGUAGE MARKS OF STUDENT WHOSE FIRST LANGUAGE MARKS IN  THE SELECTION EXAMINATION OF 2009 IS MORE THAN ANY OF THE MARKS 64 OR 62.
+SQL> SELECT SID,FLANG FROM MARKS WHERE YEAR=2009 AND EXAM='SELECTION' AND FLANG>=62 OR FLANG>=64;
+
+       SID FL                                                                   
+---------- --                                                                   
+      9025 64                                                                   
+      9234 62                                                                   
+      9458 65                                                                   
+
+SQL> SPOOL OFF;

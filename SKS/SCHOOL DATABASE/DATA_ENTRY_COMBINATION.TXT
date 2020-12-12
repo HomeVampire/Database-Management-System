@@ -1,0 +1,41 @@
+SQL> INSERT INTO COMBINATION VALUES(8930,'S1','S5','S8','S3','S7','S4');
+
+1 row created.
+
+SQL> INSERT INTO COMBINATION VALUES(9011,'S5','S1','S8','S3','S7','S9');
+
+1 row created.
+
+SQL> INSERT INTO COMBINATION VALUES(9025,'S1','S5','S8','S3','S7','S4');
+
+1 row created.
+
+SQL> INSERT INTO COMBINATION VALUES(9026,'S1','S5','S8','S3','S7','S2');
+
+1 row created.
+
+SQL> INSERT INTO COMBINATION VALUES(9150,'S5','S1','S8','S3','S7','S9');
+
+1 row created.
+
+SQL> INSERT INTO COMBINATION VALUES(9175,'S6','S5','S8','S3','S7','S2');
+
+1 row created.
+
+SQL> INSERT INTO COMBINATION VALUES(9176,'S1','S5','S8','S3','S7','S9');
+
+1 row created.
+
+SQL> INSERT INTO COMBINATION VALUES(9234,'S1','S5','S8','S3','S7','S4');
+
+1 row created.
+
+SQL> INSERT INTO COMBINATION VALUES(9458,'S5','S1','S8','S3','S7','S4');
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SPOOL OFF;

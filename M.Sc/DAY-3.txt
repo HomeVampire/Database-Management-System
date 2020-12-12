@@ -1,0 +1,573 @@
+CREATE TABLE ACTOR(
+ACTID NUMBER(5) PRIMARY KEY,
+ACTFNAME VARCHAR2(10),
+ACTLNAME VARCHAR2(10),
+ACTGENDER VARCHAR2(6)
+);
+
+
+CREATE TABLE DIRECTOR(
+DIRID NUMBER(5) PRIMARY KEY,
+DIRFNAME VARCHAR2(10),
+DIRLNAME VARCHAR2(10)
+);
+
+
+CREATE TABLE MOVIE(
+MOVID NUMBER(5) PRIMARY KEY,
+MOVNAME VARCHAR2(10),
+YEAR NUMBER(4),
+DIRID NUMBER(5),
+FOREIGN KEY(DIRID) REFERENCES DIRECTOR(DIRID)
+);
+
+
+CREATE TABLE CAST(
+ACTID NUMBER(5),
+MOVID NUMBER(5),
+ROLE VARCHAR2(10),
+PRIMARY KEY(ACTID,MOVID),
+FOREIGN KEY(ACTID) REFERENCES ACTOR(ACTID),
+FOREIGN KEY(MOVID) REFERENCES MOVIE(MOVID)
+);
+
+
+CREATE TABLE GENERS(
+GENID NUMBER(5) PRIMARY KEY,
+GENNAME VARCHAR2(10)
+);
+
+
+CREATE TABLE MOVIEGENERS(
+GENID NUMBER(5),
+MOVID NUMBER(5),
+PRIMARY KEY(GENID,MOVID),
+FOREIGN KEY(GENID) REFERENCES GENERS(GENID),
+FOREIGN KEY(MOVID) REFERENCES MOVIE(MOVID)
+);
+
+CREATE TABLE REVIEWER(
+RID NUMBER(10) PRIMARY KEY,
+RFNAME VARCHAR2(10),
+RLNAME VARCHAR2(10)
+);
+
+CREATE TABLE RATING(
+MOVID NUMBER(5),
+RID NUMBER(10),
+RATING NUMBER(2),
+PRIMARY KEY(MOVID,RID),
+FOREIGN KEY(MOVID) REFERENCES MOVIE(MOVID),
+FOREIGN KEY(RID) REFERENCES REVIEWER(RID)
+);
+
+
+DESC ACTOR
+DESC DIRECTOR
+DESC MOVIE
+DESC CAST
+DESC GENERS
+DESC MOVIEGENERS
+DESC REVIEWER
+DESC RATING
+
+
+SELECT * FROM ACTOR;
+SELECT * FROM DIRECTOR;
+SELECT * FROM MOVIE;
+SELECT * FROM CAST;
+SELECT * FROM GENERS;
+SELECT * FROM MOVIEGENERS;
+SELECT * FROM REVIEWER;
+SELECT * FROM RATING;
+
+
+INSERT INTO ACTOR VALUES(1,'DEEP','DEY','MALE');
+INSERT INTO ACTOR VALUES(2,'DEBAYAN','DEY','MALE');
+INSERT INTO ACTOR VALUES(3,'DEPAK','DEY','MALE');
+INSERT INTO ACTOR VALUES(4,'DEPAYAN','DEY','MALE');
+INSERT INTO ACTOR VALUES(5,'DEBU','DEY','MALE');
+INSERT INTO ACTOR VALUES(6,'RAJA','DEY','MALE');
+INSERT INTO ACTOR VALUES(7,'RAJDEEP','DEY','MALE');
+INSERT INTO ACTOR VALUES(8,'RAJESH','DEY','MALE');
+INSERT INTO ACTOR VALUES(9,'NIRMAL','DEY','MALE');
+INSERT INTO ACTOR VALUES(10,'SHILPA','DEY','FEMALE');
+INSERT INTO ACTOR VALUES(11,'MEGHA','SARKAR','MALE');
+
+
+INSERT INTO DIRECTOR VALUES(1,'DEEP','DEY');
+INSERT INTO DIRECTOR VALUES(2,'DEBAYAN','DEY');
+INSERT INTO DIRECTOR VALUES(3,'DEPAK','DEY');
+INSERT INTO DIRECTOR VALUES(4,'DEPAYAN','DEY');
+INSERT INTO DIRECTOR VALUES(5,'DEBU','DEY');
+INSERT INTO DIRECTOR VALUES(6,'RAJA','DEY');
+INSERT INTO DIRECTOR VALUES(7,'RAJDEEP','DEY');
+INSERT INTO DIRECTOR VALUES(8,'RAJESH','DEY');
+INSERT INTO DIRECTOR VALUES(9,'NIRMAL','DEY');
+INSERT INTO DIRECTOR VALUES(10,'SHILPA','DEY');
+INSERT INTO DIRECTOR VALUES(11,'MEGHA','SARKAR');
+
+
+INSERT INTO MOVIE VALUES(1,'F AND F 1',2009,1);
+INSERT INTO MOVIE VALUES(2,'ABCD',2009,2);
+INSERT INTO MOVIE VALUES(3,'DDLG',2009,3);
+INSERT INTO MOVIE VALUES(4,'KICK',2019,4);
+INSERT INTO MOVIE VALUES(5,'KICK 2',2017,5);
+INSERT INTO MOVIE VALUES(6,'POKIRI',2014,6);
+INSERT INTO MOVIE VALUES(7,'DOKUDU',2001,7);
+INSERT INTO MOVIE VALUES(8,'KHAD',2009,8);
+INSERT INTO MOVIE VALUES(9,'KAKA BABU',2018,9);
+INSERT INTO MOVIE VALUES(10,'FELU DA',2015,10);
+
+
+INSERT INTO CAST VALUES(1,1,'HERO');
+INSERT INTO CAST VALUES(2,2,'HERO');
+INSERT INTO CAST VALUES(3,3,'HERO');
+INSERT INTO CAST VALUES(4,4,'HERO');
+INSERT INTO CAST VALUES(5,5,'HERO');
+INSERT INTO CAST VALUES(6,6,'HERO');
+INSERT INTO CAST VALUES(7,7,'HERO');
+INSERT INTO CAST VALUES(8,8,'HERO');
+INSERT INTO CAST VALUES(9,9,'HERO');
+INSERT INTO CAST VALUES(10,10,'HEROINE');
+
+
+INSERT INTO GENERS VALUES(1,'ACTION');
+INSERT INTO GENERS VALUES(2,'DRAMA');
+INSERT INTO GENERS VALUES(3,'COMEDY');
+INSERT INTO GENERS VALUES(4,'ROMANCE');
+INSERT INTO GENERS VALUES(5,'SCI-FI');
+INSERT INTO GENERS VALUES(6,'DOCUMENTRY');
+INSERT INTO GENERS VALUES(7,'FANTECY');
+
+INSERT INTO MOVIEGENERS VALUES(1,1);
+INSERT INTO MOVIEGENERS VALUES(2,2);
+INSERT INTO MOVIEGENERS VALUES(3,3);
+INSERT INTO MOVIEGENERS VALUES(4,4);
+INSERT INTO MOVIEGENERS VALUES(5,5);
+INSERT INTO MOVIEGENERS VALUES(6,6);
+INSERT INTO MOVIEGENERS VALUES(7,7);
+INSERT INTO MOVIEGENERS VALUES(7,8);
+INSERT INTO MOVIEGENERS VALUES(6,9);
+INSERT INTO MOVIEGENERS VALUES(5,10);
+INSERT INTO MOVIEGENERS VALUES(4,1);
+INSERT INTO MOVIEGENERS VALUES(3,2);
+INSERT INTO MOVIEGENERS VALUES(2,3);
+INSERT INTO MOVIEGENERS VALUES(1,4);
+INSERT INTO MOVIEGENERS VALUES(1,5);
+INSERT INTO MOVIEGENERS VALUES(1,6);
+INSERT INTO MOVIEGENERS VALUES(2,7);
+INSERT INTO MOVIEGENERS VALUES(3,8);
+INSERT INTO MOVIEGENERS VALUES(4,9);
+INSERT INTO MOVIEGENERS VALUES(6,10);
+
+
+INSERT INTO REVIEWER VALUES(1,'DEEP','DEY');
+INSERT INTO REVIEWER VALUES(2,'DEBAYAN','DEY');
+INSERT INTO REVIEWER VALUES(3,'DEPAK','DEY');
+INSERT INTO REVIEWER VALUES(4,'DEPAYAN','DEY');
+INSERT INTO REVIEWER VALUES(5,'DEBU','DEY');
+INSERT INTO REVIEWER VALUES(6,'RAJA','DEY');
+INSERT INTO REVIEWER VALUES(7,'RAJDEEP','DEY');
+INSERT INTO REVIEWER VALUES(8,'RAJESH','DEY');
+INSERT INTO REVIEWER VALUES(9,'NIRMAL','DEY');
+INSERT INTO REVIEWER VALUES(10,'SHILPA','DEY');
+
+
+
+INSERT INTO RATING VALUES(1,1,9);
+INSERT INTO RATING VALUES(2,2,8);
+INSERT INTO RATING VALUES(3,3,7);
+INSERT INTO RATING VALUES(4,4,6);
+INSERT INTO RATING VALUES(5,5,8);
+INSERT INTO RATING VALUES(6,6,7);
+INSERT INTO RATING VALUES(7,7,8);
+INSERT INTO RATING VALUES(8,8,8);
+INSERT INTO RATING VALUES(9,9,9);
+INSERT INTO RATING VALUES(10,10,9);
+
+
+
+SQL> SELECT * FROM ACTOR;
+
+     ACTID ACTFNAME   ACTLNAME   ACTGEN
+---------- ---------- ---------- ------
+         1 DEEP       DEY        MALE
+         2 DEBAYAN    DEY        MALE
+         3 DEPAK      DEY        MALE
+         4 DEPAYAN    DEY        MALE
+         5 DEBU       DEY        MALE
+         6 RAJA       DEY        MALE
+         7 RAJADEEP   DEY        MALE
+         8 RAJESH     DEY        MALE
+         9 NIRMAL     DEY        MALE
+        10 SHILPA     DEY        FEMALE
+
+10 rows selected.
+
+SQL> SELECT * FROM DIRECTOR;
+
+     DIRID DIRFNAME   DIRLNAME
+---------- ---------- ----------
+         1 DEEP       DEY
+         2 DEBAYAN    DEY
+         3 DEPAK      DEY
+         4 DEPAYAN    DEY
+         5 DEBU       DEY
+         6 RAJA       DEY
+         7 RAJDEEP    DEY
+         8 RAJESH     DEY
+         9 NIRMAL     DEY
+        10 SHILPA     DEY
+
+10 rows selected.
+
+SQL> SELECT * FROM MOVIE;
+
+     MOVID MOVNAME          YEAR      DIRID
+---------- ---------- ---------- ----------
+         3 DDLG             2009          3
+         4 KICK             2019          4
+         5 KICK 2           2017          5
+         6 POKIRI           2014          6
+         7 DOKUDU           2001          7
+         8 KHAD             2009          8
+         9 KAKA BABU        2018          9
+        10 FELU DA          2015         10
+         1 F AND F 1        2009          1
+         2 ABCD             2009          2
+
+10 rows selected.
+
+SQL> SELECT * FROM CAST;
+
+     ACTID      MOVID ROLE
+---------- ---------- ----------
+         3          3 HERO
+         4          4 HERO
+         5          5 HERO
+         6          6 HERO
+         7          7 HERO
+         8          8 HERO
+         9          9 HERO
+        10         10 HEROINE
+         1          1 HERO
+         2          2 HERO
+
+10 rows selected.
+
+SQL> SELECT * FROM GENERS;
+
+     GENID GENNAME
+---------- ----------
+         1 ACTION
+         2 DRAMA
+         3 COMEDY
+         4 ROMANCE
+         5 SCI-FI
+         7 FANTECY
+         6 DOCUMENTRY
+
+7 rows selected.
+
+SQL> SELECT * FROM MOVIEGENERS;
+
+     GENID      MOVID
+---------- ----------
+         1          1
+         2          2
+         3          3
+         4          4
+         5          5
+         6          6
+         7          7
+         7          8
+         6          9
+         5         10
+         4          1
+
+     GENID      MOVID
+---------- ----------
+         3          2
+         2          3
+         1          4
+         1          5
+         1          6
+         2          7
+         3          8
+         4          9
+         6         10
+
+20 rows selected.
+
+SQL> SELECT * FROM REVIEWER;
+
+       RID RFNAME     RLNAME
+---------- ---------- ----------
+         1 DEEP       DEY
+         2 DEBAYAN    DEY
+         3 DEPAK      DEY
+         4 DEPAYAN    DEY
+         5 DEBU       DEY
+         6 RAJA       DEY
+         7 RAJDEEP    DEY
+         8 RAJESH     DEY
+         9 NIRMAL     DEY
+        10 SHILPA     DEY
+
+10 rows selected.
+
+SQL> SELECT * FROM RATING;
+
+     MOVID        RID     RATING
+---------- ---------- ----------
+         1          1          9
+         2          2          8
+         3          3          7
+         4          4          6
+         5          5          8
+         6          6          7
+         7          7          8
+         8          8          8
+         9          9          9
+        10         10          9
+
+10 rows selected.
+
+
+
+SQL> DESC ACTOR
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ACTID                                     NOT NULL NUMBER(5)
+ ACTFNAME                                           VARCHAR2(10)
+ ACTLNAME                                           VARCHAR2(10)
+ ACTGENDER                                          VARCHAR2(6)
+
+SQL> DESC DIRECTOR
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DIRID                                     NOT NULL NUMBER(5)
+ DIRFNAME                                           VARCHAR2(10)
+ DIRLNAME                                           VARCHAR2(10)
+
+SQL> DESC MOVIE
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ MOVID                                     NOT NULL NUMBER(5)
+ MOVNAME                                            VARCHAR2(10)
+ YEAR                                               NUMBER(4)
+ DIRID                                              NUMBER(5)
+
+SQL> DESC CAST
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ACTID                                     NOT NULL NUMBER(5)
+ MOVID                                     NOT NULL NUMBER(5)
+ ROLE                                               VARCHAR2(10)
+
+SQL> DESC GENERS
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ GENID                                     NOT NULL NUMBER(5)
+ GENNAME                                            VARCHAR2(10)
+
+SQL> DESC MOVIEGENERS
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ GENID                                     NOT NULL NUMBER(5)
+ MOVID                                     NOT NULL NUMBER(5)
+
+SQL> DESC REVIEWER
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ RID                                       NOT NULL NUMBER(10)
+ RFNAME                                             VARCHAR2(10)
+ RLNAME                                             VARCHAR2(10)
+
+SQL> DESC RATING
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ MOVID                                     NOT NULL NUMBER(5)
+ RID                                       NOT NULL NUMBER(10)
+ RATING                                             NUMBER(2)
+
+
+
+
+--DISPLAY FULL NAME  OF ALL ACTORS ACTING IN MOVIE ABCD;
+
+SELECT ACTFNAME,ACTLNAME FROM ACTOR,CAST,MOVIE
+WHERE ACTOR.ACTID=CAST.ACTID AND
+CAST.MOVID=MOVIE.MOVID AND
+MOVNAME='ABCD';
+
+--DISPLAY FULL NAME  OF DIRECTOR DIRECT THE MOVIE ABCD;
+
+SELECT DIRFNAME,DIRLNAME FROM DIRECTOR,MOVIE
+WHERE DIRECTOR.DIRID=MOVIE.DIRID AND
+MOVNAME='ABCD';
+
+--DISPLAY THE NAMES OF ALL MOVIES UNDER SCETION SCI-FI
+
+SELECT MOVNAME FROM MOVIE,MOVIEGENERS,GENERS
+WHERE MOVIE.MOVID=MOVIEGENERS.MOVID AND
+MOVIEGENERS.GENID=GENERS.GENID AND
+GENNAME='SCI-FI';
+
+--DISPLAY FULL NAME  OF ALL ACTORS ACTING IN MOVIE ABCD;
+
+SELECT ACTFNAME,ACTLNAME FROM ACTOR WHERE ACTID IN
+(SELECT ACTID FROM CAST WHERE MOVID IN
+(SELECT MOVID FROM MOVIE WHERE MOVNAME='ABCD'));
+
+--DISPLAY FULL NAME  OF DIRECTOR DIRECT THE MOVIE ABCD;
+
+SELECT DIRFNAME,DIRLNAME FROM DIRECTOR WHERE DIRID IN
+(SELECT DIRID FROM MOVIE WHERE MOVNAME='KHAD');
+
+--DISPLAY THE NAMES OF ALL MOVIES UNDER SCETION SCI-FI
+
+SELECT MOVNAME FROM MOVIE WHERE MOVID IN
+(SELECT MOVID FROM MOVIEGENERS WHERE GENID IN
+(SELECT GENID FROM GENERS WHERE GENNAME='SCI-FI'));
+
+
+ 
+===========================================================================
+
+
+DELETE FROM ACTOR WHERE ACTID=10;
+
+
+
+
+
+
+CREATE TABLE DUMMY(
+ID NUMBER(10) PRIMARY KEY
+);
+
+INSERT INTO DUMMY VALUES(1111);
+INSERT INTO DUMMY VALUES(2222);
+
+DROP TABLE DUMMY;
+
+ALTER TABLE DUMMY ADD NAME VARCHAR2(10);
+
+
+
+SQL> CREATE TABLE DUMMY(
+  2  ID NUMBER(10) PRIMARY KEY
+  3  );
+
+Table created.
+
+SQL>
+SQL> INSERT INTO DUMMY VALUES(1111);
+
+1 row created.
+
+SQL> INSERT INTO DUMMY VALUES(2222);
+
+1 row created.
+
+SQL> ALTER TABLE DUMMY NAME VARCHAR2(10);
+ALTER TABLE DUMMY NAME VARCHAR2(10)
+                  *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option
+
+
+SQL> ALTER TABLE DUMMY ADD NAME VARCHAR2(10);
+
+Table altered.
+
+SQL> DESC DUMMY;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ---------------
+
+ ID                                        NOT NULL NUMBER(10)
+ NAME                                               VARCHAR2(10)
+
+SQL> UPDATE TABLE DUMMY SET NAME='DEEP' WHERE ID=1111;
+UPDATE TABLE DUMMY SET NAME='DEEP' WHERE ID=1111
+       *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> UPDATE DUMMY SET NAME='DEEP' WHERE ID=1111;
+
+1 row updated.
+
+SQL> UPDATE DUMMY SET NAME='NIRMAL' WHERE ID=2222;
+
+1 row updated.
+
+SQL> SELECT * FROM DUMMY;
+
+        ID NAME
+---------- ----------
+      1111 DEEP
+      2222 NIRMAL
+
+SQL>
+
+
+ALTER TABLE DUMMY RENAME TO DUMMY2;
+
+
+Table altered.
+
+SQL> SELECT * FROM DUMMY2;
+
+        ID NAME
+---------- ----------
+      1111 DEEP
+      2222 NIRMAL
+
+SQL> SELECT * FROM DUMMY;
+SELECT * FROM DUMMY
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+DELETE FROM DUMMY2 WHERE ID=2222;
+
+ALTER TABLE DUMMY2 DELETE NAME;
+
+
+
+SQL> alater table DUMMY2 drop column NAME;
+SP2-0734: unknown command beginning "alater tab..." - rest of line ignored.
+SQL> alter table DUMMY2 drop column NAME;
+
+Table altered.
+
+SQL> desc table;
+ERROR:
+ORA-00931: missing identifier
+
+
+SQL> desc DUMMY2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ ID                                        NOT NULL NUMBER(10)
+
+SQL>
+
+
+ALTER TABLE DUMMY2 MODIFY COLUMN ID VARCHAR2(10);
+
+DELETE FROM ACTOR WHERE ACTID=1;
+
+INSERT INTO CAST VALUES(16,1,'HERO');
+PARENT KEY NOT FOUND--------
+
+
+
+SQL> ------DATA MANUPULATION LANGUAGE
+
+S

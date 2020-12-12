@@ -1,0 +1,149 @@
+SQL> --29 TO 34 NO TABLE EXIST.
+
+SQL> --35. FIND THE ID,NAME,CLASS AND THE SECTION OF THE STUDENTS TABLE WHO HAVE SCORED MORE THAN OR EQUAL TO 90 IN THEIR OPTIONAL SUBJECT I.E,IN OPT IN THE ANNUAL EXAMINATION 2009.
+SQL> SELECT STUDENT.SID,STUDENT.FNAME,STUDENT.LNAME,STUDENT.CLASS,STUDENT.SEC
+  2  FROM STUDENT JOIN MARKS
+  3  ON STUDENT.SID = MARKS.SID
+  4  WHERE OPT>=90 AND EXAM='ANNUAL' AND YEAR=2009;
+
+       SID FNAME      LNAME             CLASS S                                 
+---------- ---------- ------------ ---------- -                                 
+      9026 REEJU      SEN                  12 C                                 
+      9150 DEBARGHA   ROY                  11 D                                 
+
+SQL> --36. FIND ID , NAMES OF TEACHER WHO ARE BOTH CLASS TEACHER AND HOD OF A SUBJECT.
+SQL> SELECT TEACHER.TID,TEACHER.FNAME,TEACHER.LNAME
+  2  FROM TEACHER JOIN SUBJECT ON TEACHER.TID = SUBJECT.HODTID
+  3  JOIN STUDENT ON TEACHER.TID = STUDENT.CLASSTR
+  4  WHERE TEACHER.TID=SUBJECT.HODTID AND TEACHER.TID=STUDENT.CLASSTR;
+
+TID FNAME      LNAME                                                            
+--- ---------- ------------                                                     
+T02 P.C.       ROY                                                              
+T01 SATYEN     BOSE                                                             
+T05 PULOK      KUNDU                                                            
+T03 PRABIR     MAJUMDER                                                         
+T01 SATYEN     BOSE                                                             
+T05 PULOK      KUNDU                                                            
+T02 P.C.       ROY                                                              
+T05 PULOK      KUNDU                                                            
+
+8 rows selected.
+
+SQL> --37. FIND THE ID, NAME OF TEACHER WHO ARE NOT HEADS OF ANY DEPARTMENT.
+SQL> SELECT TEACHER.TID,TEACHER.FNAME,TEACHER.LNAME FROM TEACHER
+  2  WHERE TEACHER.TID NOT IN (SELECT SUBJECT.HODTID FROM SUBJECT);
+
+TID FNAME      LNAME
+--- ---------- ------------
+T11 ARIJIT     HAZRA
+T13 DEEP       DEY
+
+SQL> --38. LIST NAMES OF THE ALL STUDENTS WHO ARE IN THE SAME CLASS AS ANSHUMAN PAL.
+SQL> SELECT FNAME,LNAME FROM STUDENT WHERE CLASS=(SELECT CLASS FROM STUDENT WHERE FNAME='ANSHU');
+
+FNAME      LNAME                                                                
+---------- ------------                                                         
+SAURO      GHOSAL                                                               
+REEJU      SEN                                                                  
+RUBESH     SARKAR                                                               
+SOURAV     PAL                                                                  
+ANSHU      PAL                                                                  
+
+SQL> --39. LIST NAME OF STUDENTS WHO HAVE THE CITY AND PIN AS TEACHER TRINANJAN DUTT.
+SQL> SELECT STUDENT.FNAME,STUDENT.LNAME
+  2  FROM STUDENT JOIN TEACHER ON STUDENT.CLASSTR = TEACHER.TID
+  3  WHERE STUDENT.ADDRESS=(SELECT TEACHER.ADDRESS FROM TEACHER WHERE TEACHER.FNAME='TRINANJAN') AND STUDENT.PIN=(SELECT TEACHER.PIN FROM TEACHER WHERE TEACHER.FNAME='ANSHU');
+
+no rows selected
+
+SQL> --40. LIST SID AND ELEC2 MARKS OF STUDENTS WHO HAVE GOT MORE MARKS IN THE ELEC2 SUBJECT THAN ANY OF THE MARKS IN THE ELEC1 SUBJECT IN THE ANNUAL EXAM OF 2009.
+SQL> SELECT SID,ELEC2 FROM MARKS WHERE ELEC2>ELEC1 AND EXAM='ANNUAL' AND YEAR=2009;
+
+       SID EL                                                                   
+---------- --                                                                   
+      9026 76                                                                   
+
+SQL> --41. LIST SID OF STUDENTS AND THE MARKS OBTAINED BY THEM WHO HAVE GOT THE HIGHEST MARKS IN THE SELECTION EXAMINATION OF 2009 IN THE ELECTIVE SUBJECT ELEC3.
+SQL> SELECT SID,ELEC3 FROM MARKS WHERE ELEC3=(SELECT MAX(ELEC3) FROM MARKS) AND YEAR=2009  AND EXAM='SELECTION';
+
+       SID EL                                                                   
+---------- --                                                                   
+      8930 90                                                                   
+      9458 90                                                                   
+
+SQL> --42. LIST NAME ,CLASS AND SECTION OF STUDENTS WHO HAVE CLASS TEACHERS WHO ARE ALSO HOD OF A PARTICULAR SUBJECT.
+SQL> SELECT STUDENT.FNAME,STUDENT.LNAME,STUDENT.CLASS,STUDENT.SEC
+  2  FROM STUDENT JOIN SUBJECT ON STUDENT.CLASSTR = SUBJECT.HODTID
+  3  WHERE STUDENT.CLASSTR=SUBJECT.HODTID;
+
+FNAME      LNAME             CLASS S                                            
+---------- ------------ ---------- -                                            
+SOURAV     PAL                  12 C                                            
+SAURO      GHOSAL               12 C                                            
+REEJU      SEN                  12 C                                            
+DEBARGHA   ROY                  11 D                                            
+DEBRAJ     GHOSH                11 D                                            
+ANSHU      PAL                  12 E                                            
+RUBESH     SARKAR               12 E                                            
+SAYAN      SEN                  11 E                                            
+
+8 rows selected.
+
+SQL> --43. LIST NAME,CLASS,SECTION OF STUDENTS WHO HAVE CLASS TEACHERS WHO ARE NOT HEAD OF DEPARTMENT IN ANY SUBJECT.
+SQL> --NOT DONE.
+
+SQL> --44. LIST NAME ,CLASS AND SECTION OF STUDENTS WHO HAVE FAILED IN THE ANNUAL EXAMINATION OF 2009 IN THE SUBJECT SLANG.
+SQL> SELECT STUDENT.FNAME,STUDENT.LNAME,STUDENT.CLASS,STUDENT.SEC
+  2  FROM STUDENT JOIN MARKS ON STUDENT.SID = MARKS.SID
+  3  WHERE MARKS.SLANG<=30;
+
+FNAME      LNAME             CLASS S                                            
+---------- ------------ ---------- -                                            
+REEJU      SEN                  12 C                                            
+RUBESH     SARKAR               12 E                                            
+
+SQL> --45. FIND THE NAME AND PHONE NUMBER OF THE HEAD OF THE PHYSICS DEPERTMENT.
+SQL> SELECT TEACHER.FNAME,TEACHER.LNAME,TEACHER.PHONE
+  2  FROM TEACHER JOIN SUBJECT ON TEACHER.TID = SUBJECT.HODTID
+  3  WHERE SUBJECT.SUBNAME='PHYSICS';
+
+FNAME      LNAME             PHONE                                              
+---------- ------------ ----------                                              
+SATYEN     BOSE           24220211                                              
+
+SQL> --46. FIND THE NAME OF 2 STUDENTS WHO HAVE THE SAME LAST NAME.
+SQL> CREATE VIEW S1 AS SELECT SID,FNAME,LNAME FROM STUDENT;
+
+View created.
+
+SQL> CREATE VIEW S2 AS SELECT SID,FNAME,LNAME FROM STUDENT;
+
+View created.
+
+SQL> SELECT S1.FNAME,S1.LNAME FROM S1,S2
+  2  WHERE S1.FNAME!=S2.FNAME AND S1.LNAME=S2.LNAME;
+
+FNAME      LNAME
+---------- ------------
+REEJU      SEN
+SAYAN      SEN
+ANSHU      PAL
+SOURAV     PAL
+
+SQL> --47. FIND THE NAME OF 2 STUDENT WHO HAVE THE SAME ADDRESS.
+SQL> CREATE VIEW S3 AS SELECT SID,FNAME,LNAME,ADDRESS FROM STUDENT;
+
+View created.
+
+SQL> CREATE VIEW S4 AS SELECT SID,FNAME,LNAME,ADDRESS FROM STUDENT;
+
+View created.
+
+SQL> SELECT S3.FNAME,S3.LNAME FROM S3,S4
+  2  WHERE S3.SID!=S4.SID AND S3.ADDRESS=S4.ADDRESS;
+
+no rows selected
+
+SQL> SPOOL OFF;
+

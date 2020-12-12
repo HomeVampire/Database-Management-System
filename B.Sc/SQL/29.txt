@@ -1,0 +1,22 @@
+CREATE TABLE PURCHASE(
+ORDERID NUMBER(5),
+PRODUCTID NUMBER(5),
+UNITPRICE NUMBER(3),
+QTY NUMBER(3)
+);
+
+ DESC PURCHASE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ORDERID                                            NUMBER(5)
+ PRODUCTID                                          NUMBER(5)
+ UNITPRICE                                          NUMBER(3)
+ QTY                                                NUMBER(3)
+
+INSERT INTO PURCHASE VALUES(1111,0001,130,100);
+INSERT INTO PURCHASE VALUES(2222,0002,30,100);
+INSERT INTO PURCHASE VALUES(3333,0003,90,100);
+
+SELECT * FROM PURCHASE WHERE UNITPRICE<100;
+
+UPDATE PURCHASE SET UNITPRICE=150 WHERE PRODUCTID=0002;

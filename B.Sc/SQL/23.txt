@@ -1,0 +1,62 @@
+CREATE TABLE BRANCH(
+BRANCHID NUMBER(4) PRIMARY KEY,
+BRANCHNAME VARCHAR2(10),
+BRANCHCITY VARCHAR2(10),
+ASSETS NUMBER(7)
+);
+
+CREATE TABLE CUSTOMER(
+CUSTNAME VARCHAR2(10),
+CUSTSTREET VARCHAR2(10),
+CUSTCITY VARCHAR2(10),
+ACCOUNTID VARCHAR2(6) PRIMARY KEY
+);
+
+CREATE TABLE ACCOUNT(
+ACCOUNTID VARCHAR2(6),
+BRANCHID NUMBER(4),
+BALANCE NUMBER(7),
+FOREIGN KEY(ACCOUNTID) REFERENCES CUSTOMER(ACCOUNTID) ON DELETE CASCADE,
+FOREIGN KEY(BRANCHID) REFERENCES BRANCH(BRANCHID) ON DELETE CASCADE
+);
+
+
+SQL> DESC BRANCH;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BRANCHID                                  NOT NULL NUMBER(4)
+ BRANCHNAME                                         VARCHAR2(10)
+ BRANCHCITY                                         VARCHAR2(10)
+ ASSETS                                             NUMBER(7)
+
+SQL> DESC CUSTOMER;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUSTNAME                                           VARCHAR2(10)
+ CUSTSTREET                                         VARCHAR2(10)
+ CUSTCITY                                           VARCHAR2(10)
+ ACCOUNTID                                 NOT NULL VARCHAR2(6)
+
+SQL> DESC ACCOUNT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ACCOUNTID                                          VARCHAR2(6)
+ BRANCHID                                           NUMBER(4)
+ BALANCE                                            NUMBER(7)
+
+INSERT INTO BRANCH VALUES(01,'HALISAHAR','HALISAHAR',1500000);
+INSERT INTO BRANCH VALUES(02,'PALPARA','PALPARA',1500000);
+INSERT INTO BRANCH VALUES(03,'CHAKDAH','CHAKDAH',1500000);
+
+INSERT INTO CUSTOMER VALUES('DEEP','HALISAHAR','HALISAHAR','A-32');
+INSERT INTO CUSTOMER VALUES('RAHUL','PALPARA','PALPARA','B-32');
+INSERT INTO CUSTOMER VALUES('PAMIR','CHAKDAH','CHAKDAH','C-32');
+
+INSERT INTO ACCOUNT VALUES('A-32',01,65000);
+INSERT INTO ACCOUNT VALUES('B-32',02,5000);
+INSERT INTO ACCOUNT VALUES('C-32',03,5300);
+
+SELECT BRANCH.*,BALANCE FROM BRANCH,ACCOUNT
+WHERE BRANCH.BRANCHID=ACCOUNT.BRANCHID AND ACCOUNTID='A-32';
+
+SELECT ACCOUNTID FROM ACCOUNT WHERE BALANCE>50000;

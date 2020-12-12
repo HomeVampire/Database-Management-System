@@ -1,0 +1,206 @@
+SQL> --48->NO TABLE EXIST.
+
+SQL> --49. INSERT THE   DATA  FOR  A  TEACHER  INTO  THE  TEACHER  TABLE.
+SQL> INSERT INTO TEACHER VALUES('T13','DEEP','DEY','52/A  SURVEY PARK','KOLKATA',700034, 24221234,'20-SEP-1952','S4');
+
+1 row created.
+
+SQL> SELECT * FROM TEACHER;
+
+TID FNAME      LNAME        ADDRESS                CITY                PIN      
+--- ---------- ------------ ---------------------- ------------ ----------      
+     PHONE DOB       SU                                                         
+---------- --------- --                                                         
+T01 SATYEN     BOSE         29 SANTOSHPUR ROAD     KOLKATA          700034      
+  24220211 12-OCT-59 S8                                                         
+                                                                                
+T02 P.C.       ROY          21/3 N.S.C ROAD        BARACKPORE       710074      
+  24648440 21-JUN-55 S3                                                         
+                                                                                
+T03 PRABIR     MAJUMDER     52/A  SURVEY PARK      KOLKATA          700034      
+  24221459 08-SEP-52 S7                                                         
+                                                                                
+
+TID FNAME      LNAME        ADDRESS                CITY                PIN      
+--- ---------- ------------ ---------------------- ------------ ----------      
+     PHONE DOB       SU                                                         
+---------- --------- --                                                         
+T04 JOYDIP     BHATT        387 LAKE GARDENS       KOLKATA          700045      
+  24222858 02-SEP-71 S4                                                         
+                                                                                
+T05 PULOK      KUNDU        22/B SURVEY  PARK      KOLKATA          700034      
+  24222211 10-OCT-65 S9                                                         
+                                                                                
+T06 TUHIN      ROY          18 R. AVENUE           BUDGE BUDGE      720120      
+  24645346 09-FEB-49 S2                                                         
+                                                                                
+
+TID FNAME      LNAME        ADDRESS                CITY                PIN      
+--- ---------- ------------ ---------------------- ------------ ----------      
+     PHONE DOB       SU                                                         
+---------- --------- --                                                         
+T07 AVIK       DEY          82/6 BALLYGUNGE        KOLKATA          700019      
+  24403547 02-JUL-44 S1                                                         
+                                                                                
+T08 SIMI       TALWAR       30/B K.ROY ROAD        BARACKPORE       710025      
+  24540137 19-DEC-65 S6                                                         
+                                                                                
+T11 ARIJIT     HAZRA        2 NEW BALLYGUNGE       KOLKATA          700019      
+  24408880 22-MAY-75 S3                                                         
+                                                                                
+
+TID FNAME      LNAME        ADDRESS                CITY                PIN      
+--- ---------- ------------ ---------------------- ------------ ----------      
+     PHONE DOB       SU                                                         
+---------- --------- --                                                         
+T12 TRINANJAN  DUTT         AB46 SALT LAKE         KOLKATA          700090      
+  24113042 22-AUG-50 S5                                                         
+                                                                                
+T13 DEEP       DEY          52/A  SURVEY PARK      KOLKATA          700034      
+  24221234 20-SEP-52 S4                                                         
+                                                                                
+
+11 rows selected.
+
+SQL> --50. INSERT THE DATA FOR A NEW SUBJECT BIOLOGY INTO THE SUBJECT TABLE.
+SQL> --ALREADY ADDED;
+SQL> --51. INSERT THE MARKS DATA FOR THE SELECTION EXAM OF 2009 FOR THE STUDENT WHOSE SID NUMBER 9234 FOR THE SUBJECTS FLANG=60, SLANG=55 AND OPT=80.
+SQL> INSERT INTO MARKS VALUES(9234,'SELECTION',2009,60,55,'','','',80);
+
+1 row created.
+
+SQL> SELECT * FROM MARKS;
+
+       SID EXAM             YEAR FL SL EL EL EL OP                              
+---------- ---------- ---------- -- -- -- -- -- --                              
+      8930 SELECTION        2009 55 61 80 78 90 88                              
+      9011 ANNUAL           2009 57 57 87 78 87 75                              
+      9025 SELECTION        2009 64 60 89 75 84 89                              
+      9026 ANNUAL           2009 61 23 75 76 82 93                              
+      9150 ANNUAL           2009 56 59 79 74 78 90                              
+      9175 ANNUAL           2009 29 64 82 66 80 79                              
+      9176 SELECTION        2009 55 28 90 79 87 87                              
+      9234 SELECTION        2009 62 60 80 76 81 85                              
+      9458 SELECTION        2009 65 60 88 95 90 97                              
+      9234 SELECTION        2009 60 55          80                              
+
+10 rows selected.
+
+SQL> --52. CHANGE THE CITY NAME FROM KOLKATA TO CALCUTTA IN ALL THE TUPLES OF STUDENT TABLE.
+SQL> UPDATE STUDENT SET CITY='CALCUTTA' WHERE CITY='KOLKATA';
+
+7 rows updated.
+
+SQL> SELECT SID,FNAME,CITY FROM STUDENT;
+
+       SID FNAME      CITY
+---------- ---------- ------------
+      8930 SAURO      CALCUTTA
+      9011 DEBRAJ     CALCUTTA
+      9025 SAYAN      CALCUTTA
+      9026 REEJU      CALCUTTA
+      9150 DEBARGHA   CALCUTTA
+      9175 YOGESH     HOWRAH
+      9176 RUBESH     HOWRAH
+      9234 SOURAV     CALCUTTA
+      9458 ANSHU      CALCUTTA
+
+9 rows selected.
+
+SQL> --53.  CHANGE THE HODTID TO T10 FOR THE SUBJECT` PHYSICS' FROM THE SUBJECT TABLE.
+SQL> INSERT INTO TEACHER VALUES('T10','RAHUL','GANGOPADHYAY','387 LAKE GARDENS','KOLKATA',700045,24228896,'28-SEP-1952','S8');
+
+1 row created.
+
+SQL> UPDATE SUBJECT SET HODTID='T10' WHERE SUBNAME='PHYSICS';
+
+1 row updated.
+
+SQL> SELECT* FROM SUBJECT;
+
+SU SUBNAME     HOD     THEORY        LAB
+-- ----------- --- ---------- ----------
+S1 BENGALI     T07        100          0
+S2 BIOLOGY     T06         80         20
+S3 CHEMISTRY   T02         80         20
+S4 COMPUTER    T04         70         30
+S5 ENGLISH     T12        100          0
+S6 HINDI       T08        100          0
+S7 MATHEMATICS T03        100          0
+S8 PHYSICS     T10         80         20
+S9 STATISTICS  T05         80         20
+
+9 rows selected.
+
+SQL> --54. CHANGE THE MARKS FOR THE OPTIONAL SUBJECT TO 85 AND FLANG TO 55 FOR THE SELECTION EXAMINATION OF 2009 FOR THE STUDENT WITH SID=9234.
+SQL> UPDATE MARKS SET OPT=85,FLANG=55 WHERE EXAM='SELECTION' AND SID=9234  AND YEAR=2009;
+
+2 rows updated.
+
+SQL> SELECT * FROM MARKS;
+
+       SID EXAM             YEAR FL SL EL EL EL OP
+---------- ---------- ---------- -- -- -- -- -- --
+      8930 SELECTION        2009 55 61 80 78 90 88
+      9011 ANNUAL           2009 57 57 87 78 87 75
+      9025 SELECTION        2009 64 60 89 75 84 89
+      9026 ANNUAL           2009 61 23 75 76 82 93
+      9150 ANNUAL           2009 56 59 79 74 78 90
+      9175 ANNUAL           2009 29 64 82 66 80 79
+      9176 SELECTION        2009 55 28 90 79 87 87
+      9234 SELECTION        2009 55 60 80 76 81 85
+      9458 SELECTION        2009 65 60 88 95 90 97
+      9234 SELECTION        2009 55 55          85
+
+10 rows selected.
+
+SQL> --55. CHANGE THE LAST NAME TO 'GANGULI' IN PLACE TO 'GANGOPADHYAY' IN THE TEACHER TABLE.
+SQL> UPDATE TEACHER SET LNAME='GANGULY' WHERE LNAME='GANGOPADHYAY';
+
+1 row updated.
+
+SQL> SELECT TID,FNAME,LNAME FROM TEACHER;
+
+TID FNAME      LNAME
+--- ---------- ------------
+T01 SATYEN     BOSE
+T02 P.C.       ROY
+T03 PRABIR     MAJUMDER
+T04 JOYDIP     BHATT
+T05 PULOK      KUNDU
+T06 TUHIN      ROY
+T07 AVIK       DEY
+T08 SIMI       TALWAR
+T11 ARIJIT     HAZRA
+T12 TRINANJAN  DUTT
+T13 DEEP       DEY
+
+TID FNAME      LNAME
+--- ---------- ------------
+T10 RAHUL      GANGULY
+
+12 rows selected.
+
+SQL> --56. IF A STUDENT GOT MORE THAN 25 BUT LESS THAN 30  IN SECONG LANGUAGE IN THE SELECTION EXAMINATION OF 2009,THEN CHANGE THAT TO 30 FOR ALL SUCH STUDENT FOR GRACE MARKS.
+SQL> UPDATE  MARKS SET SLANG=30 WHERE EXAM='SELECTION' AND YEAR=2009 AND SLANG<=30  AND SLANG>=25;
+
+1 row updated.
+
+SQL> SELECT * FROM MARKS;
+
+       SID EXAM             YEAR FL SL EL EL EL OP                              
+---------- ---------- ---------- -- -- -- -- -- --                              
+      8930 SELECTION        2009 55 61 80 78 90 88                              
+      9011 ANNUAL           2009 57 57 87 78 87 75                              
+      9025 SELECTION        2009 64 60 89 75 84 89                              
+      9026 ANNUAL           2009 61 23 75 76 82 93                              
+      9150 ANNUAL           2009 56 59 79 74 78 90                              
+      9175 ANNUAL           2009 29 64 82 66 80 79                              
+      9176 SELECTION        2009 55 30 90 79 87 87                              
+      9234 SELECTION        2009 62 60 80 76 81 85                              
+      9458 SELECTION        2009 65 60 88 95 90 97                              
+      9234 SELECTION        2009 60 55          80                              
+
+10 rows selected.
+
+SQL> SPOOL OFF;

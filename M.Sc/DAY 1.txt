@@ -1,0 +1,143 @@
+SQL> CREATE TABLE DOCTOR(
+  2  REGNO NUMBER(10),
+  3  NAME VARCHAR2(10),
+  4  CONTACT_NO NUMBER(10),
+  5  PRIMARY KEY(REGNO)
+  6  );
+
+Table created.
+
+SQL> DESC DOCTOR;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ REGNO                                     NOT NULL NUMBER(10)
+ NAME                                               VARCHAR2(10)
+ CONTACT_NO                                         NUMBER(10)
+
+SQL> CREATE TABLE PATIENT(
+  2  NAME VARCHAR2(10),
+  3  CONTACT_NO NUMBER(10),
+  4  ADDRESS VARCHAR2(20),
+  5  NOK VARCHAR2(10),
+  6  NOK_CONTACT VARCHAR2(10),
+  7  PRIMARY KEY(NAME,CONTACT_NO)
+  8  );
+
+Table created.
+
+SQL> DESC PATIENT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                      NOT NULL VARCHAR2(10)
+ CONTACT_NO                                NOT NULL NUMBER(10)
+ ADDRESS                                            VARCHAR2(20)
+ NOK                                                VARCHAR2(10)
+ NOK_CONTACT                                        VARCHAR2(10)
+
+SQL> CREATE TABLE NURSE(
+  2  ID NUMBER(10),
+  3  NAME VARCHAR2(10),
+  4  CONTACT_NO NUMBER(10),
+  5  PRIMARY KEY(ID)
+  6  );
+
+Table created.
+
+SQL> DESC NURSE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(10)
+ NAME                                               VARCHAR2(10)
+ CONTACT_NO                                         NUMBER(10)
+
+SQL> INSERT INTO DOCTOR VALUES(111,'DEEP',8697448896);
+
+1 row created.
+
+SQL> INSERT INTO DOCTOR VALUES(222,'LENDU',8697448897);
+
+1 row created.
+
+SQL> INSERT INTO DOCTOR VALUES(333,'RAHUL',8697448898);
+
+1 row created.
+
+SQL> INSERT INTO DOCTOR VALUES(444,'RAJA',8697448899);
+
+1 row created.
+
+SQL> INSERT INTO DOCTOR VALUES(555,'PRITAM',869446899);
+
+1 row created.
+
+SQL> SELECT * FROM DOCTOR;
+
+     REGNO NAME       CONTACT_NO                                                
+---------- ---------- ----------                                                
+       111 DEEP       8697448896                                                
+       222 LENDU      8697448897                                                
+       333 RAHUL      8697448898                                                
+       444 RAJA       8697448899                                                
+       555 PRITAM      869446899                                                
+
+SQL> INSERT INTO PATIENT VALUES('DEEP',8697448896,'HALISAHAR','NIRMAL',1234567890);
+
+1 row created.
+
+SQL> INSERT INTO PATIENT VALUES('SOUMEN',8697448897,'HALISAHAR','NIRMAL',1234567890);
+
+1 row created.
+
+SQL> INSERT INTO PATIENT VALUES('SUDIPTO',8697448898,'HALISAHAR','NIRMAL',1234567890);
+
+1 row created.
+
+SQL> INSERT INTO PATIENT VALUES('SOVIK',8697468898,'HALISAHAR','NIRMAL',1234567890);
+
+1 row created.
+
+SQL> INSERT INTO PATIENT VALUES('SOURAV',8697468456,'HALISAHAR','NIRMAL',1234567890);
+
+1 row created.
+
+SQL> SELECT * FROM PATIENT;
+
+NAME       CONTACT_NO ADDRESS              NOK        NOK_CONTAC                
+---------- ---------- -------------------- ---------- ----------                
+DEEP       8697448896 HALISAHAR            NIRMAL     1234567890                
+SOUMEN     8697448897 HALISAHAR            NIRMAL     1234567890                
+SUDIPTO    8697448898 HALISAHAR            NIRMAL     1234567890                
+SOVIK      8697468898 HALISAHAR            NIRMAL     1234567890                
+SOURAV     8697468456 HALISAHAR            NIRMAL     1234567890                
+
+SQL> INSERT INTO NURSE VALUES(001,'DIPA',1234567890);
+
+1 row created.
+
+SQL> INSERT INTO NURSE VALUES(002,'SUDIPA',1234567890);
+
+1 row created.
+
+SQL> INSERT INTO NURSE VALUES(003,'MANISHA',1234567890);
+
+1 row created.
+
+SQL> INSERT INTO NURSE VALUES(004,'ESHITA',1234567890);
+
+1 row created.
+
+SQL> INSERT INTO NURSE VALUES(005,'ADITI',1234567890);
+
+1 row created.
+
+SQL> SELECT * FROM NURSE;
+
+        ID NAME       CONTACT_NO                                                
+---------- ---------- ----------                                                
+         1 DIPA       1234567890                                                
+         2 SUDIPA     1234567890                                                
+         3 MANISHA    1234567890                                                
+         4 ESHITA     1234567890                                                
+         5 ADITI      1234567890                                                
+
+SQL> SPOOL OFF;

@@ -1,0 +1,25 @@
+CREATE TABLE DEPT(
+DEPID NUMBER(3) PRIMARY KEY,
+NAMEOFDEPT VARCHAR2(15),
+YEAROFEST NUMBER(4),
+HODNAME VARCHAR2(10),
+EMPLID NUMBER(3)
+);
+
+
+SQL> DESC DEPT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPID                                     NOT NULL NUMBER(3)
+ NAMEOFDEPT                                         VARCHAR2(15)
+ YEAROFEST                                          NUMBER(4)
+ HODNAME                                            VARCHAR2(10)
+ EMPLID                                             NUMBER(3)
+
+INSERT INTO DEPT VALUES(111,'CMSCH',2009,'DEEP',001);
+INSERT INTO DEPT VALUES(222,'PHY',2010,'RAHUL',006);
+INSERT INTO DEPT VALUES(333,'MTHS',2009,'PAMIR',004);
+
+SELECT * FROM DEPT WHERE YEAROFEST<2011;
+
+SELECT * FROM DEPT WHERE DEPID='111';

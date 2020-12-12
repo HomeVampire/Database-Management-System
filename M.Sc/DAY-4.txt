@@ -1,0 +1,201 @@
+EMPLOYEE(ID,NAME,SALARY,DEPT,LOCATION)
+ORDER(OID,PID,PNAME,QUANTITY,COST)
+
+====================================================
+
+CREATE TABLE EMPLOYEE(
+ID NUMBER(4) PRIMARY KEY,
+NAME VARCHAR2(10),
+SALARY NUMBER(6),
+DEPT VARCHAR2(10),
+LOCATION VARCHAR2(10)
+);
+
+CREATE TABLE ORDERS(
+OID NUMBER(4),
+PID NUMBER(4),
+PNAME VARCHAR2(10),
+QUANTITY NUMBER(4),
+COST NUMBER(6),
+PRIMARY KEY(OID,PID)
+);
+
+SQL> DESC EMPLOYEE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ---------------------
+
+ ID                                        NOT NULL NUMBER(4)
+ NAME                                               VARCHAR2(10)
+ SALARY                                             NUMBER(6)
+ DEPT                                               VARCHAR2(10)
+ LOCATION                                           VARCHAR2(10)
+
+SQL> DESC ORDERS;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ---------------------
+
+ OID                                       NOT NULL NUMBER(4)
+ PID                                       NOT NULL NUMBER(4)
+ PNAME                                              VARCHAR2(10)
+ QUANTITY                                           NUMBER(4)
+ COST                                               NUMBER(6)
+
+===============================================================================
+
+INSERT INTO EMPLOYEE VALUES(1111,'DEEP',12000,'SALES','HALISAHAR');
+INSERT INTO EMPLOYEE VALUES(2222,'DEBA',16000,'MARKETING','KOLKATA');
+INSERT INTO EMPLOYEE VALUES(3333,'SOURAV',20000,'MANAGER','DELHI');
+INSERT INTO EMPLOYEE VALUES(4444,'BIMAL',10000,'SALES','KALYANI');
+INSERT INTO EMPLOYEE VALUES(5555,'SUBHENDU',13000,'MANAGER','MUMBAI');
+INSERT INTO EMPLOYEE VALUES(6666,'RAJA',16000,'MARKETING','HALISAHAR');
+
+SQL> SELECT * FROM EMPLOYEE;
+
+        ID NAME           SALARY DEPT       LOCATION
+---------- ---------- ---------- ---------- ----------
+      1111 DEEP            12000 SALES      HALISAHAR
+      2222 DEBA            16000 MARKETING  KOLKATA
+      3333 SOURAV          20000 MANAGER    DELHI
+      4444 BIMAL           10000 SALES      KALYANI
+      5555 SUBHENDU        13000 MANAGER    MUMBAI
+      6666 RAJA            16000 MARKETING  HALISAHAR
+
+6 rows selected.
+
+==============================================================================
+
+INSERT INTO ORDERS VALUES(1111,1111,'MONITOR',120,5600);
+INSERT INTO ORDERS VALUES(2222,2222,'KEYBOARD',160,560);
+INSERT INTO ORDERS VALUES(3333,3333,'MOUSE',200,230);
+INSERT INTO ORDERS VALUES(4444,4444,'CABINET',100,1500);
+INSERT INTO ORDERS VALUES(5555,5555,'UPS',130,2500);
+INSERT INTO ORDERS VALUES(6666,6666,'RAM',160,1600);
+
+SQL> SELECT * FROM ORDERS;
+
+       OID        PID PNAME        QUANTITY       COST
+---------- ---------- ---------- ---------- ----------
+      1111       1111 MONITOR           120       5600
+      2222       2222 KEYBOARD          160        560
+      3333       3333 MOUSE             200        230
+      4444       4444 CABINET           100       1500
+      5555       5555 UPS               130       2500
+      6666       6666 RAM               160       1600
+
+6 rows selected.
+
+==============================================================================
+
+--FIND THE TOTAL SALARY OF ALL EMPLOYEES
+
+SELECT SUM(SALARY) AS TOTAL_SALARY FROM EMPLOYEE;
+
+TOTAL_SALARY
+------------
+       87000
+
+--FIND THE SALARY OF SALES DEPARTMENT
+
+SELECT SUM(SALARY) AS TOTAL_SALARY_SALES FROM EMPLOYEE WHERE DEPT='SALES';
+
+TOTAL_SALARY_SALES
+------------------
+             22000
+
+--FIND THE HEIGHEST SALARY OF EACH DEPARTMENT
+
+SELECT DEPT,MAX(SALARY) AS MAX_SALARY FROM EMPLOYEE GROUP BY(DEPT);
+
+
+DEPT       MAX_SALARY
+---------- ----------
+MARKETING       16000
+MANAGER         20000
+SALES           12000
+
+--FIND TOTAL NUMBERS OF EMPLOYEES IN THE DEPARTMENT MANAGER
+
+SELECT COUNT(ID) FROM EMPLOYEE WHERE DEPT='MANAGER';
+
+ COUNT(ID)
+----------
+         2
+
+--SHOW EMPLOYEE NAME ACCORDING TO DICTIONARY
+
+SELECT * FROM EMPLOYEE ORDER BY(NAME);
+
+        ID NAME           SALARY DEPT       LOCATION
+---------- ---------- ---------- ---------- ----------
+      4444 BIMAL           10000 SALES      KALYANI
+      2222 DEBA            16000 MARKETING  KOLKATA
+      1111 DEEP            12000 SALES      HALISAHAR
+      6666 RAJA            16000 MARKETING  HALISAHAR
+      3333 SOURAV          20000 MANAGER    DELHI
+      5555 SUBHENDU        13000 MANAGER    MUMBAI
+
+6 rows selected.
+
+--SHOW EMPLOYEE NAME IN DESCENDIN ORDER
+
+SQL> SELECT * FROM EMPLOYEE ORDER BY(NAME) DESC;
+
+        ID NAME           SALARY DEPT       LOCATION
+---------- ---------- ---------- ---------- ----------
+      5555 SUBHENDU        13000 MANAGER    MUMBAI
+      3333 SOURAV          20000 MANAGER    DELHI
+      6666 RAJA            16000 MARKETING  HALISAHAR
+      1111 DEEP            12000 SALES      HALISAHAR
+      2222 DEBA            16000 MARKETING  KOLKATA
+      4444 BIMAL           10000 SALES      KALYANI
+
+6 rows selected.
+
+============================================================================
+
+SELECT TOP 3 FROM EMPLOYEE;
+SELECT TOP 10 PERCENT FROM EMPLOYEE;
+
+=============================================================================
+
+--FIND ALL THE EMPLOYEES WHOSE NAMES STARTS WITH D
+
+SELECT * FROM EMPLOYEE WHERE NAME LIKE 'D%';
+
+        ID NAME           SALARY DEPT       LOCATION
+---------- ---------- ---------- ---------- ----------
+      1111 DEEP            12000 SALES      HALISAHAR
+      2222 DEBA            16000 MARKETING  KOLKATA
+
+--FIND ALL THE EMPLOYEES WHOSE NAMES ENDS WITH D
+
+SELECT * FROM EMPLOYEE WHERE NAME LIKE '%U';
+
+
+        ID NAME           SALARY DEPT       LOCATION
+---------- ---------- ---------- ---------- ----------
+      5555 SUBHENDU        13000 MANAGER    MUMBAI
+
+--FIND ALL THE EMPLOYEES WHOSE NAMES 2ND LAST CHARACTER E
+
+SELECT * FROM EMPLOYEE WHERE NAME LIKE '%E_';
+
+
+        ID NAME           SALARY DEPT       LOCATION
+---------- ---------- ---------- ---------- ----------
+      1111 DEEP            12000 SALES      HALISAHAR
+
+--FIND ALL THE EMPLOYEES WHOSE NAMES HAS CHARACTER E
+
+SELECT * FROM EMPLOYEE WHERE NAME LIKE '%E%';
+
+        ID NAME           SALARY DEPT       LOCATION
+---------- ---------- ---------- ---------- ----------
+      1111 DEEP            12000 SALES      HALISAHAR
+      2222 DEBA            16000 MARKETING  KOLKATA
+      5555 SUBHENDU        13000 MANAGER    MUMBAI
+
+===========================================================================
+
+SELECT * FROM EMPLOYEE WHERE NAME LIKE '%E[EB]%';
+SELECT * FROM EMPLOYEE WHERE NAME LIKE '%[A-P]%';

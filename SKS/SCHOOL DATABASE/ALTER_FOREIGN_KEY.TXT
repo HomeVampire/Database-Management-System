@@ -1,0 +1,97 @@
+SQL> ALTER TABLE COMBINATION ADD CONSTRAINT COMBINATION_FK FOREIGN KEY(SID) REFERENCES STUDENT(SID);
+
+Table altered.
+
+SQL> ALTER TABLE FEES ADD CONSTRAINT FEES_FK FOREIGN KEY(SID) REFERENCES STUDENT(SID);
+
+Table altered.
+
+SQL> ALTER TABLE MARKS ADD CONSTRAINT MARKS_FK FOREIGN KEY(SID) REFERENCES STUDENT(SID);
+
+Table altered.
+
+SQL> ALTER TABLE STUDENT ADD CONSTRAINT STUDENT_FK FOREIGN KEY(CLASSTR) REFERENCES TEACHER(TID);
+
+Table altered.
+
+SQL> ALTER TABLE SUBJECT ADD CONSTRAINT SUBJECT_FK FOREIGN KEY(HODTID) REFERENCES TEACHER(TID);
+
+Table altered.
+
+SQL> ALTER TABLE TEACHER ADD SUB VARCHAR2(2);
+
+Table altered.
+
+SQL> ALTER TABLE TEACHER ADD CONSTRAINT TEACHER_FK FOREIGN KEY(SUB) REFERENCES SUBJECT(SUBID);
+
+Table altered.
+
+SQL> DESC STUDENT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                       NOT NULL NUMBER(4)
+ FNAME                                              VARCHAR2(10)
+ LNAME                                              VARCHAR2(12)
+ ADDRESS                                            VARCHAR2(22)
+ CITY                                               VARCHAR2(12)
+ PIN                                                NUMBER(6)
+ PHONE                                              NUMBER(10)
+ CLASS                                              NUMBER(2)
+ SEC                                                VARCHAR2(1)
+ CLASSTR                                            VARCHAR2(3)
+
+SQL> DESC COMBINATION;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                                NUMBER(4)
+ FLANG                                              VARCHAR2(2)
+ SNAME                                              VARCHAR2(2)
+ ELEC1                                              VARCHAR2(2)
+ ELEC2                                              VARCHAR2(2)
+ ELEC3                                              VARCHAR2(2)
+ OPT                                                VARCHAR2(2)
+
+SQL> DESC SUBJECT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SUBID                                     NOT NULL VARCHAR2(2)
+ SUBNAME                                            VARCHAR2(11)
+ HODTID                                             VARCHAR2(3)
+ THEORY                                             NUMBER(3)
+ LAB                                                NUMBER(2)
+
+SQL> DESC FEES;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                                NUMBER(4)
+ YEAR                                               NUMBER(4)
+ MONTH                                              NUMBER(1)
+ AMOUNT                                             NUMBER(3)
+
+SQL> DESC MARKS;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                                NUMBER(4)
+ EXAM                                               VARCHAR2(10)
+ YEAR                                               NUMBER(4)
+ FLANG                                              VARCHAR2(2)
+ SLANG                                              VARCHAR2(2)
+ ELEC1                                              VARCHAR2(2)
+ ELEC2                                              VARCHAR2(2)
+ ELEC3                                              VARCHAR2(2)
+ OPT                                                VARCHAR2(2)
+
+SQL> DESC TEACHER;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TID                                       NOT NULL VARCHAR2(3)
+ FNAME                                              VARCHAR2(10)
+ LNAME                                              VARCHAR2(12)
+ ADDRESS                                            VARCHAR2(22)
+ CITY                                               VARCHAR2(12)
+ PIN                                                NUMBER(6)
+ PHONE                                              NUMBER(10)
+ DOB                                                DATE
+ SUB                                                VARCHAR2(2)
+
+SQL> SPOOL OFF;

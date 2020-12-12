@@ -1,0 +1,147 @@
+SQL> --QUESTION NO 1
+
+SQL> CREATE TABLE BOOK(
+  2  TITLE VARCHAR2(20),
+  3  ISBN NUMBER(10) PRIMARY KEY,
+  4  AUTHOR VARCHAR2(10),
+  5  YEAR_OF_PUB NUMBER(4),
+  6  PUBLISHER VARCHAR2(10),
+  7  PRICE NUMBER(4)
+  8  );
+
+Table created.
+
+SQL> INSERT INTO BOOK VALUES('THEORY OF LIFE',8697448896,'DEEP DEY',2014,'XYZ',2500);
+
+SQL> INSERT INTO BOOK VALUES('THEORY OF LIFE',8697448897,'RAHUL ROY',2014,'ABC',2500);
+
+SQL> INSERT INTO BOOK VALUES('THEORY OF BOB',8697448898,'SHAWAN',2014,'XYZ',2500);
+
+SQL> SELECT * FROM BOOK;
+
+TITLE                      ISBN AUTHOR     YEAR_OF_PUB PUBLISHER       PRICE    
+-------------------- ---------- ---------- ----------- ---------- ----------    
+THEORY OF LIFE       8697448896 DEEP DEY          2014 XYZ              2500    
+THEORY OF LIFE       8697448897 RAHUL ROY         2014 ABC              2500    
+THEORY OF BOB        8697448898 SHAWAN            2014 XYZ              2500    
+
+
+SQL> SELECT TITLE,ISBN FROM BOOK WHERE YEAR_OF_PUB=2014;
+
+TITLE                      ISBN                                                 
+-------------------- ----------                                                 
+THEORY OF LIFE       8697448896                                                 
+THEORY OF LIFE       8697448897                                                 
+THEORY OF BOB        8697448898                                                 
+
+SQL> SELECT TITLE,PRICE FROM BOOK WHERE PUBLISHER='XYZ';
+
+TITLE                     PRICE                                                 
+-------------------- ----------                                                 
+THEORY OF LIFE             2500                                                 
+THEORY OF BOB              2500                                                 
+
+
+SQL> --QUESTION NO 7
+
+SQL> CREATE TABLE DVD(
+  2  DVD_TITLE VARCHAR2(10),
+  3  DVD_ID NUMBER(10) PRIMARY KEY,
+  4  CATEGORY VARCHAR2(10),
+  5  PRICE NUMBER(3),
+  6  DATE_OF_PURCHASE DATE,
+  7  NO_OF_COPIES NUMBER(3)
+  8  );
+
+Table created.
+
+SQL> INSERT INTO DVD VALUES('HOLA',8255,'ACTION',110,'14-FEB-2018',25);
+
+SQL> INSERT INTO DVD VALUES('VOLA',8265,'COMEDY',110,'14-FEB-2018',25);
+
+SQL> INSERT INTO DVD VALUES('LOLA',8365,'THRILLER',210,'19-FEB-2018',25);
+
+SQL> INSERT INTO DVD VALUES('MOLA',8345,'THRILLER',90,'19-FEB-2018',25);
+
+SQL> SELECT * FROM DVD;
+
+DVD_TITLE      DVD_ID CATEGORY        PRICE DATE_OF_P NO_OF_COPIES              
+---------- ---------- ---------- ---------- --------- ------------              
+HOLA             8255 ACTION            110 14-FEB-18           25              
+VOLA             8265 COMEDY            110 14-FEB-18           25              
+LOLA             8365 THRILLER          210 19-FEB-18           25              
+MOLA             8345 THRILLER           90 19-FEB-18           25              
+             
+
+SQL> SELECT * FROM DVD WHERE CATEGORY='ACTION';
+
+DVD_TITLE      DVD_ID CATEGORY        PRICE DATE_OF_P NO_OF_COPIES              
+---------- ---------- ---------- ---------- --------- ------------              
+HOLA             8255 ACTION            110 14-FEB-18           25              
+
+SQL> SELECT DVD_ID FROM DVD WHERE PRICE<110;
+
+    DVD_ID                                                                      
+----------                                                                      
+      8345                                                                      
+
+SQL> SELECT DVD_TITLE,DVD_ID FROM DVD WHERE DATE_OF_PURCHASE='14-FEB-2018';
+
+DVD_TITLE      DVD_ID                                                           
+---------- ----------                                                           
+HOLA             8255                                                           
+VOLA             8265                                                           
+
+
+SQL> --QUESTION NO 8
+
+CREATE TABLE DEPT2(
+DEPT_ID NUMBER(2) PRIMARY KEY,
+DNAME VARCHAR2(10)
+);
+
+
+CREATE TABLE EMP2(
+EMPNO NUMBER(3)  PRIMARY KEY,
+ENAME VARCHAR2(10),
+EDESIGNATION VARCHAR2(10),
+DATE_OF_REC DATE,
+SALARY NUMBER(5),
+COMISSION NUMBER(4),
+DEPT_ID NUMBER(2),
+FOREIGN KEY(DEPT_ID) REFERENCES DEPT ON DELETE CASCADE
+);
+
+SQL> INSERT INTO DEPT2 VALUES(01,'MANAGER');
+
+SQL> INSERT INTO DEPT2 VALUES(02,'CLARK');
+
+SQL> SELECT * FROM DEPT2;
+
+   DEPT_ID DNAME                                                                
+---------- ----------                                                           
+         1 MANAGER                                                              
+         2 CLARK                                                                
+
+SQL> INSERT INTO EMP2 VALUES(111,'DEEP','CLEARK','12-FEB-1998',25000,1500,2);
+
+SQL> INSERT INTO EMP2 VALUES(222,'RAHUL','MANAGER','12-FEB-1998',25000,1500,1);
+
+SQL> SELECT * FROM EMP2;
+
+     EMPNO ENAME      EDESIGNATI DATE_OF_R     SALARY  COMISSION    DEPT_ID     
+---------- ---------- ---------- --------- ---------- ---------- ----------     
+       111 DEEP       CLEARK     12-FEB-98      25000       1500          2     
+       222 RAHUL      MANAGER    12-FEB-98      25000       1500          1     
+
+
+
+DECLARE
+EMPNO NUMBER(3);
+SALARY NUMBER(5);
+BEGIN
+SELECT EMPNO,SALARY INTO EMPNO,SALARY FROM EMP2 WHERE EMPNO=111;
+DBMS_OUTPUT.PUT_LINE(EMPNO||'  '||SALARY);
+END;
+/
+

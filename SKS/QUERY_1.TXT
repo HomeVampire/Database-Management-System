@@ -1,0 +1,91 @@
+SQL> --1. LET US NOW WRITE THE QUERY TO FIND THE ADDRESS AND TELEPHONE NUMBER OF ALL STUDENTS FROM OUR SCHOOL DATABASE.
+SQL> SELECT SID,ADDRESS,PHONE FROM STUDENT;
+
+       SID ADDRESS                     PHONE                                    
+---------- ---------------------- ----------                                    
+      8930 15/2 NEW ALIPUR          24750255                                    
+      9011 772 LAKE TOWN            24348580                                    
+      9025 29/A EAST ROAD           25348580                                    
+      9026 9B N.S.C.ROAD            24117137                                    
+      9150 B 129 LAKEGARDENS        65182152                                    
+      9175 17 A.K. ROAD             23588326                                    
+      9176 P.K. ROY SARANI          23710027                                    
+      9234 AE52 SALT LAKE           24407890                                    
+      9458 21 SOUTH END ROAD        24656677                                    
+
+9 rows selected.
+
+SQL> --2. LET US WRITE THE QUERY TO FIND FROM OUR SCHOOL DATABASE THE NAMES OF THE DIFFERENT CITIES FROM WHERE THE STUDENTS HAVE COME.
+SQL> SELECT  DISTINCT CITY FROM STUDENT;
+
+CITY                                                                            
+------------                                                                    
+KOLKATA                                                                         
+HOWRAH                                                                          
+
+SQL> --3. FIND THE NAMES OF ALL STUDENTS WHO ARE RESIDING IN KOLKATA.
+SQL> SELECT FNAME,LNAME FROM STUDENT WHERE CITY='KOLKATA';
+
+FNAME      LNAME                                                                
+---------- ------------                                                         
+SAURO      GHOSAL                                                               
+DEBRAJ     GHOSH                                                                
+SAYAN      SEN                                                                  
+REEJU      SEN                                                                  
+DEBARGHA   ROY                                                                  
+SOURAV     PAL                                                                  
+ANSHU      PAL                                                                  
+
+7 rows selected.
+
+SQL> --4. FIND THE NAMES OF ALL STUDENTS WHO ARE RESIDING IN KOLKATA AND WHO ARE IN CLASS 12.
+SQL> SELECT FNAME,LNAME,CITY,CLASS FROM STUDENT WHERE CITY='KOLKATA' AND CLASS=12;
+
+FNAME      LNAME        CITY              CLASS                                 
+---------- ------------ ------------ ----------                                 
+SAURO      GHOSAL       KOLKATA              12                                 
+REEJU      SEN          KOLKATA              12                                 
+SOURAV     PAL          KOLKATA              12                                 
+ANSHU      PAL          KOLKATA              12                                 
+
+SQL> --5. FIND THE NAMES, CITY AND CLASSES OF ALL STUDENTS WHO ARE RESIDING IN KOLKATA AND ARE IN CLASS 12 OR WHO ARE RESIDING IN HOWRAH  AND ARE IN CLASS 11.
+SQL> SELECT FNAME,LNAME,CITY,CLASS FROM STUDENT WHERE CITY='KOLKATA' AND CLASS=12 OR CITY='HOWRAH' AND CLASS=11;
+
+FNAME      LNAME        CITY              CLASS                                 
+---------- ------------ ------------ ----------                                 
+SAURO      GHOSAL       KOLKATA              12                                 
+REEJU      SEN          KOLKATA              12                                 
+YOGESH     KOTHARI      HOWRAH               11                                 
+SOURAV     PAL          KOLKATA              12                                 
+ANSHU      PAL          KOLKATA              12                                 
+
+SQL> --6. FIND THE NAMES,CITY AND CLASSES OF ALL STUDENTS WHO ARE NOT RESIDING IN KOLKATA.
+SQL> SELECT FNAME,LNAME,CITY,CLASS FROM STUDENT WHERE CITY!='KOLKATA';
+
+FNAME      LNAME        CITY              CLASS                                 
+---------- ------------ ------------ ----------                                 
+YOGESH     KOTHARI      HOWRAH               11                                 
+RUBESH     SARKAR       HOWRAH               12                                 
+
+SQL> --7. FIND THE STUDENTS ID AND FIRST LANGUAGE MARKS OF 3ALL STUDENTS WHO HAVE GOT MARKS  BETWEEN 60 AND 70 IN THE ANNUAL EXAMINATION  OF 2009.
+SQL> SELECT SID,FLANG FROM MARKS WHERE EXAM='ANNUAL' AND FLANG>=60 AND FLANG<=70;
+
+       SID FL
+---------- --
+      9026 61
+
+SQL> --8. FIND THE FULL DATA OF STUDENTS IN CLASS 11AND SECTION 'D' FROM THE STUDENTS RELATION.
+SQL> SELECT * FROM STUDENT WHERE CLASS=11 AND SEC='D';
+
+       SID FNAME      LNAME        ADDRESS                CITY                  
+---------- ---------- ------------ ---------------------- ------------          
+       PIN      PHONE      CLASS S CLA                                          
+---------- ---------- ---------- - ---                                          
+      9011 DEBRAJ     GHOSH        772 LAKE TOWN          KOLKATA               
+    700089   24348580         11 D T01                                          
+                                                                                
+      9150 DEBARGHA   ROY          B 129 LAKEGARDENS      KOLKATA               
+    700045   65182152         11 D T01                                          
+                                                                                
+
+SQL> SPOOL OFF;

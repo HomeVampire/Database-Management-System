@@ -1,0 +1,29 @@
+CREATE TABLE BOOKS(
+TITLE VARCHAR2(10),
+ISBN NUMBER(10) PRIMARY KEY,
+AUTHOR VARCHAR2(10),
+YEAROFPUB NUMBER(4),
+PUBLISHER VARCHAR2(10),
+PRICE NUMBER(4)
+);
+
+ DESC BOOKS;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TITLE                                              VARCHAR2(10)
+ ISBN                                      NOT NULL NUMBER(10)
+ AUTHOR                                             VARCHAR2(10)
+ YEAROFPUB                                          NUMBER(4)
+ PUBLISHER                                          VARCHAR2(10)
+ PRICE                                              NUMBER(4)
+
+
+INSERT INTO BOOKS VALUES('THE LIFE',8697448896,'DEEP',2019,'CHAYA',800);
+INSERT INTO BOOKS VALUES('THE HEART',7697448896,'DEEP',2019,'XYZ',950);
+INSERT INTO BOOKS VALUES('THE MIND',9697448896,'DEEP',2019,'XYZ',650);
+INSERT INTO BOOKS VALUES('THE MIND',9597448896,'DEEP',2014,'XYZ',650);
+
+SELECT TITLE,ISBN FROM BOOKS WHERE YEAROFPUB=2014;
+
+SELECT TITLE,PRICE FROM BOOKS WHERE PUBLISHER='XYZ'
+AND YEAROFPUB>=2012 AND YEAROFPUB<=2014;

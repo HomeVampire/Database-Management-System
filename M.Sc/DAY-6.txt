@@ -1,0 +1,241 @@
+INSERT INTO WORKER(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+		(001, 'Monika', 'Arora', 10000, '14-FEB-20', 'HR');
+INSERT INTO WORKER(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+		(002, 'Niharika', 'Verma', 80000, '14-JUN-11', 'Admin');
+INSERT INTO WORKER(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+		(003, 'Vishal', 'Singhal', 300000, '14-FEB-20', 'HR');
+INSERT INTO WORKER(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+		(004, 'Amitabh', 'Singh', 500000, '14-FEB-20', 'Admin');
+INSERT INTO WORKER(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+		(005, 'Vivek', 'Bhati', 500000, '14-JUN-11', 'Admin');
+INSERT INTO WORKER(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+		(006, 'Vipul', 'Diwan', 200000, '14-JUN-11', 'Account');
+INSERT INTO WORKER(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+		(007, 'Satish', 'Kumar', 75000, '14-JAN-20', 'Account');
+INSERT INTO WORKER(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+		(008, 'Geetika', 'Chauhan', 90000, '14-APR-11', 'Admin');
+
+
+INSERT INTO BONUS 
+	(WORKER_REF_ID, BONUS_AMOUNT, BONUS_DATE) VALUES
+		(001, 5000, '16-FEB-20');
+INSERT INTO BONUS 
+	(WORKER_REF_ID, BONUS_AMOUNT, BONUS_DATE) VALUES
+		(002, 3000, '16-JUN-11');
+INSERT INTO BONUS 
+	(WORKER_REF_ID, BONUS_AMOUNT, BONUS_DATE) VALUES
+		(003, 4000, '16-FEB-20');
+INSERT INTO BONUS 
+	(WORKER_REF_ID, BONUS_AMOUNT, BONUS_DATE) VALUES
+		(001, 4500, '16-FEB-20');
+INSERT INTO BONUS 
+	(WORKER_REF_ID, BONUS_AMOUNT, BONUS_DATE) VALUES
+		(002, 3500, '16-JUN-11');
+
+
+INSERT INTO TITLE 
+	(WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
+ 		(001, 'Manager', '16-FEB-20');
+INSERT INTO TITLE 
+	(WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
+ 		(002, 'Executive', '16-JUN-11');
+INSERT INTO TITLE 
+	(WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
+ 		(008, 'Executive', '16-JUN-11');
+INSERT INTO TITLE 
+	(WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
+ 		(005, 'Manager', '16-JUN-11');
+INSERT INTO TITLE 
+	(WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
+ 		(004, 'Asst. Manager', '16-JUN-11');
+INSERT INTO TITLE 
+	(WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
+ 		(007, 'Executive', '16-JUN-11');
+INSERT INTO TITLE 
+	(WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
+ 		(006, 'Lead', '16-JUN-11');
+INSERT INTO TITLE 
+	(WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
+ 		(003, 'Lead', '16-JUN-11');
+
+========================================================================================
+CREATE TABLE WORKER(
+WORKER_ID NUMBER(4) PRIMARY KEY,
+FIRST_NAME VARCHAR2(10),
+LAST_NAME VARCHAR2(10),
+SALARY NUMBER(6),
+JOINING_DATE DATE,
+DEPARTMENT VARCHAR2(10)
+);
+
+
+CREATE TABLE BONUS(
+WORKER_REF_ID NUMBER(4),
+BONUS_AMOUNT NUMBER(5),
+BONUS_DATE DATE,
+FOREIGN KEY(WORKER_REF_ID) REFERENCES WORKER(WORKER_ID) ON DELETE CASCADE
+);
+
+CREATE TABLE TITLE(
+WORKER_REF_ID,
+WORKER_TITLE VARCHAR2(16),
+AFFECTED_FROM DATE,
+FOREIGN KEY(WORKER_REF_ID) REFERENCES WORKER(WORKER_ID) ON DELETE CASCADE
+);
+
+SQL> DESC WORKER;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ WORKER_ID                                 NOT NULL NUMBER(4)
+ FIRST_NAME                                         VARCHAR2(10)
+ LAST_NAME                                          VARCHAR2(10)
+ SALARY                                             NUMBER(6)
+ JOINING_DATE                                       DATE
+ DEPARTMENT                                         VARCHAR2(10)
+
+SQL> DESC BONUS;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ WORKER_REF_ID                                      NUMBER(4)
+ BONUS_AMOUNT                                       NUMBER(5)
+ BONUS_DATE                                         DATE
+
+SQL> DESC TITLE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ WORKER_REF_ID                                      NUMBER(4)
+ WORKER_TITLE                                       VARCHAR2(16)
+ AFFECTED_FROM                                      DATE
+
+SQL> SELECT * FROM WORKER;
+
+ WORKER_ID FIRST_NAME LAST_NAME      SALARY JOINING_D DEPARTMENT
+---------- ---------- ---------- ---------- --------- ----------
+         1 Monika     Arora           10000 14-FEB-20 HR
+         2 Niharika   Verma           80000 14-JUN-11 Admin
+         3 Vishal     Singhal        300000 14-FEB-20 HR
+         4 Amitabh    Singh          500000 14-FEB-20 Admin
+         5 Vivek      Bhati          500000 14-JUN-11 Admin
+         6 Vipul      Diwan          200000 14-JUN-11 Account
+         7 Satish     Kumar           75000 14-JAN-20 Account
+         8 Geetika    Chauhan         90000 14-APR-11 Admin
+
+8 rows selected.
+
+SQL> SELECT * FROM BONUS;
+
+WORKER_REF_ID BONUS_AMOUNT BONUS_DAT
+------------- ------------ ---------
+            1         5000 16-FEB-20
+            2         3000 16-JUN-11
+            3         4000 16-FEB-20
+            1         4500 16-FEB-20
+            2         3500 16-JUN-11
+
+SQL> SELECT * FROM TITLE;
+
+WORKER_REF_ID WORKER_TITLE     AFFECTED_
+------------- ---------------- ---------
+            1 Manager          16-FEB-20
+            2 Executive        16-JUN-11
+            8 Executive        16-JUN-11
+            5 Manager          16-JUN-11
+            4 Asst. Manager    16-JUN-11
+            7 Executive        16-JUN-11
+            6 Lead             16-JUN-11
+            3 Lead             16-JUN-11
+
+8 rows selected.
+
+===============================================================================
+
+--FIND THE FIRSTNAME OF WORKERS LOWERCASE
+
+SELECT LOWER(FIRST_NAME) FROM WORKER;
+
+LOWER(FIRS
+----------
+monika
+niharika
+vishal
+amitabh
+vivek
+vipul
+satish
+geetika
+
+--LIST THE DETAILS OF WORKERS OF DEPT NAME STARTING WITH ADMIN
+
+SELECT FIRST_NAME, LAST_NAME FROM WORKER WHERE DEPARTMENT LIKE 'Admin%';
+
+FIRST_NAME LAST_NAME
+---------- ----------
+Niharika   Verma
+Amitabh    Singh
+Vivek      Bhati
+Geetika    Chauhan
+
+--FIND THE DETAIL OF WORKERS WHO HAVE 'A' AT THEIR FIRST NAME
+
+SELECT * FROM WORKER WHERE FIRST_NAME LIKE '%a%';
+
+ WORKER_ID FIRST_NAME LAST_NAME      SALARY JOINING_D DEPARTMENT
+---------- ---------- ---------- ---------- --------- ----------
+         1 Monika     Arora           10000 14-FEB-20 HR
+         2 Niharika   Verma           80000 14-JUN-11 Admin
+         3 Vishal     Singhal        300000 14-FEB-20 HR
+         4 Amitabh    Singh          500000 14-FEB-20 Admin
+         7 Satish     Kumar           75000 14-JAN-20 Account
+         8 Geetika    Chauhan         90000 14-APR-11 Admin
+
+--SHOW ALL WORKERS BY ASCENDING ORDER;
+
+SELECT * FROM WORKER ORDER BY FIRST_NAME;
+
+ WORKER_ID FIRST_NAME LAST_NAME      SALARY JOINING_D DEPARTMENT
+---------- ---------- ---------- ---------- --------- ----------
+         4 Amitabh    Singh          500000 14-FEB-20 Admin
+         8 Geetika    Chauhan         90000 14-APR-11 Admin
+         1 Monika     Arora           10000 14-FEB-20 HR
+         2 Niharika   Verma           80000 14-JUN-11 Admin
+         7 Satish     Kumar           75000 14-JAN-20 Account
+         6 Vipul      Diwan          200000 14-JUN-11 Account
+         3 Vishal     Singhal        300000 14-FEB-20 HR
+         5 Vivek      Bhati          500000 14-JUN-11 Admin
+
+--SHOW DETAIL OF WORKER EXCEPT 'VIPUL' AND 'SATISH'
+
+SELECT * FROM WORKER WHERE FIRST_NAME!='Vipul' AND FIRST_NAME!='Satish';
+
+ WORKER_ID FIRST_NAME LAST_NAME      SALARY JOINING_D DEPARTMENT
+---------- ---------- ---------- ---------- --------- ----------
+         1 Monika     Arora           10000 14-FEB-20 HR
+         2 Niharika   Verma           80000 14-JUN-11 Admin
+         3 Vishal     Singhal        300000 14-FEB-20 HR
+         4 Amitabh    Singh          500000 14-FEB-20 Admin
+         5 Vivek      Bhati          500000 14-JUN-11 Admin
+         8 Geetika    Chauhan         90000 14-APR-11 Admin
+
+SELECT * FROM WORKER
+MINUS
+SELECT * FROM WORKER WHERE FIRST_NAME='Vipul' OR FIRST_NAME='Satish';
+
+ WORKER_ID FIRST_NAME LAST_NAME      SALARY JOINING_D DEPARTMENT
+---------- ---------- ---------- ---------- --------- ----------
+         1 Monika     Arora           10000 14-FEB-20 HR
+         2 Niharika   Verma           80000 14-JUN-11 Admin
+         3 Vishal     Singhal        300000 14-FEB-20 HR
+         4 Amitabh    Singh          500000 14-FEB-20 Admin
+         5 Vivek      Bhati          500000 14-JUN-11 Admin
+         8 Geetika    Chauhan         90000 14-APR-11 Admin
+
+--WRITE A QUERY TO SHOW DETAIL OF THE WORKERS WHO ARE ALSO MANAGER
+
+SELECT * FROM WORKER WHERE WORKER_ID IN
+(SELECT WORKER_REF_ID FROM TITLE WHERE WORKER_TITLE='Manager');
+
+
+ WORKER_ID FIRST_NAME LAST_NAME      SALARY JOINING_D DEPARTMENT
+---------- ---------- ---------- ---------- --------- ----------
+         1 Monika     Arora           10000 14-FEB-20 HR
+         5 Vivek      Bhati          500000 14-JUN-11 Admin

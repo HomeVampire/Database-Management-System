@@ -1,0 +1,96 @@
+SQL> --9. DISPLAY IDS AND NAMES OF ALL STUDENTS OF CLASS 11 IN ASCENDING ORDER OF THEIR NAMES.
+SQL> SELECT SID,FNAME,LNAME FROM STUDENT WHERE CLASS=11 ORDER BY FNAME ASC;
+
+       SID FNAME      LNAME                                                     
+---------- ---------- ------------                                              
+      9150 DEBARGHA   ROY                                                       
+      9011 DEBRAJ     GHOSH                                                     
+      9025 SAYAN      SEN                                                       
+      9175 YOGESH     KOTHARI                                                   
+
+SQL> --10. DISPLAY NAME,CLASS AND SECTION OF ALL STUDENTS OF CLASS 11 IN ASCENDING ORDER OF THEIR CLASSES AND ASCENDING ORDER OF THEIR SECTIONS.
+SQL> SELECT SID,FNAME,LNAME,CLASS,SEC FROM STUDENT WHERE CLASS=11 ORDER BY FNAME,SEC ASC;
+
+       SID FNAME      LNAME             CLASS S                                 
+---------- ---------- ------------ ---------- -                                 
+      9150 DEBARGHA   ROY                  11 D                                 
+      9011 DEBRAJ     GHOSH                11 D                                 
+      9025 SAYAN      SEN                  11 E                                 
+      9175 YOGESH     KOTHARI              11 E                                 
+
+SQL> ALTER TABLE MARKS  RENAME COLUMN SNAME TO SLANG;
+
+Table altered.                                                       
+
+SQL> ALTER TABLE COMBINATION  RENAME COLUMN SNAME TO SLANG;
+
+Table altered.
+
+SQL> --11.  DISPLAY THE ID OF A STUDENT AND HIS AVERAGE MARKS FOR THE LANGUAGE GROUP FLANG AND SLANG IN THE ANNUAL EXAMINATIONS CONSTRUCTED IN THE YEAR 2009. 
+SQL> SELECT SID,(FLANG+SLANG)/2 AS AVG FROM MARKS WHERE EXAM='ANNUAL' AND YEAR=2009;
+
+       SID        AVG                                                           
+---------- ----------                                                           
+      9011         57                                                           
+      9026         42                                                           
+      9150       57.5                                                           
+      9175       46.5                                                           
+
+
+SQL> --12. DISPLAY THE ID OF STUDENTS AND THEIR FLANG AND SLANG MARKS IN THE ANNUAL EXAMINATION OF 2009,WHOSE AVERAGE OF LANGUAGE MARKS IS >=50.
+SQL> SELECT SID,FLANG,SLANG FROM MARKS WHERE (FLANG+SLANG)/2 >= 50 AND EXAM='ANNUAL';
+
+       SID FL SL
+---------- -- --
+      9011 57 57
+      9150 56 59
+
+SQL> --13. FIND THE ID AND NAMES OF ALL STUDENTS WHOSE 4 DIGITS ID START WITH THE DIGITS '90'.
+SQL> SELECT SID,FNAME,LNAME FROM STUDENT WHERE SID LIKE '90__';
+
+       SID FNAME      LNAME                                                     
+---------- ---------- ------------                                              
+      9011 DEBRAJ     GHOSH                                                     
+      9025 SAYAN      SEN                                                       
+      9026 REEJU      SEN                                                       
+
+SQL> --14. FIND THE NAMES OF STUDENTS WHOSE FIRST NAME STARTS WITH THE ALPHABETS 'DEB!' .
+SQL> SELECT FNAME,LNAME FROM STUDENT WHERE FNAME LIKE 'DEB%';
+
+FNAME      LNAME                                                                
+---------- ------------                                                         
+DEBRAJ     GHOSH                                                                
+DEBARGHA   ROY                                                                  
+
+SQL> --15. FIND THE NAMES OF STUDENTS WHOSE FIRST NAME  ARE AT LEAST 8 CHARACTERS IN LENGTH.
+SQL> SELECT FNAME,LNAME FROM STUDENT WHERE FNAME LIKE '________%';
+
+FNAME      LNAME
+---------- ------------
+DEBARGHA   ROY
+                                                             
+
+SQL> --16.  FIND THE NAMES OF STUDENTS WHOSE FIRST NAME STARTS WITH 'S' AND ARE
+AT LEAST 6 CHARACTERS IN LENGTH.
+SQL> SELECT FNAME,LNAME FROM STUDENT WHERE FNAME LIKE 'S%' AND FNAME LIKE '______%';
+
+FNAME      LNAME
+---------- ------------
+SOURAV     PAL
+                                                             
+
+SQL> --17. COUNT THE NUMBER OF TUPLES IN THE TEACHER RELATION.
+SQL> SELECT COUNT (*) FROM TEACHER;
+
+  COUNT(*)
+----------
+        10
+
+SQL> --18. COUNT THE NUMBER OF TUPLES IN THE MARKS RELATION WHERE THE MARKS IN THE OPTIONAL SUBJECT (THE OPT ATTRIBUTES) IS MORE THAN OR EQUAL TO 80 FOR THE ANNUAL EXAMINATION OF 2009.
+SQL> SELECT COUNT (*) FROM MARKS  WHERE OPT>=80 AND EXAM='ANNUAL';
+
+  COUNT(*)
+----------
+         2
+
+SQL> SPOOL OFF;

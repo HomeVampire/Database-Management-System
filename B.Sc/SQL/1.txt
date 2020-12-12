@@ -1,0 +1,86 @@
+
+SQL> CREATE TABLE BOOK (TITLE VARCHAR2(8),
+  2  ISBN NUMBER(2),
+  3  AUTHOR VARCHAR2(9),
+  4  YEAR_OF_PUB NUMBER(4),
+  5  PUBLISHER VARCHAR2(8),
+  6  PRICE NUMBER(4));
+
+Table created.
+
+SQL> DESC BOOK;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TITLE                                              VARCHAR2(8)
+ ISBN                                               NUMBER(2)
+ AUTHOR                                             VARCHAR2(9)
+ YEAR_OF_PUB                                        NUMBER(4)
+ PUBLISHER                                          VARCHAR2(8)
+ PRICE                                              NUMBER(4)
+
+
+
+SQL> INSERT INTO BOOK VALUES('&TITLE',&ISBN,'&AUTHOR',&YEAR_OF_PUB,'&PUBLISHER',&PRICE);
+Enter value for title: C
+Enter value for isbn: 1
+Enter value for author: CHUTIYA
+Enter value for year_of_pub: 2015
+Enter value for publisher: BC
+Enter value for price: 1350
+old   1: INSERT INTO BOOK VALUES('&TITLE',&ISBN,'&AUTHOR',&YEAR_OF_PUB,'&PUBLISHER',&PRICE)
+new   1: INSERT INTO BOOK VALUES('C',1,'CHUTIYA',2015,'BC',1350)
+
+1 row created.
+
+SQL> /
+Enter value for title: C++
+Enter value for isbn: 2
+Enter value for author: BAHENCHOD
+Enter value for year_of_pub: 2012
+Enter value for publisher: XYZ
+Enter value for price: 800
+old   1: INSERT INTO BOOK VALUES('&TITLE',&ISBN,'&AUTHOR',&YEAR_OF_PUB,'&PUBLISHER',&PRICE)
+new   1: INSERT INTO BOOK VALUES('C++',2,'BAHENCHOD',2012,'XYZ',800)
+
+1 row created.
+
+SQL> /
+Enter value for title: JAVA
+Enter value for isbn: 3
+Enter value for author: BHOSDIKE
+Enter value for year_of_pub: 2014
+Enter value for publisher: XYZ
+Enter value for price: 900
+old   1: INSERT INTO BOOK VALUES('&TITLE',&ISBN,'&AUTHOR',&YEAR_OF_PUB,'&PUBLISHER',&PRICE)
+new   1: INSERT INTO BOOK VALUES('JAVA',3,'BHOSDIKE',2014,'XYZ',900)
+
+1 row created.
+
+SQL> /
+Enter value for title: PHP
+Enter value for isbn: 4
+Enter value for author: PAMIR
+Enter value for year_of_pub: 2014
+Enter value for publisher: MC
+Enter value for price: 700
+old   1: INSERT INTO BOOK VALUES('&TITLE',&ISBN,'&AUTHOR',&YEAR_OF_PUB,'&PUBLISHER',&PRICE)
+new   1: INSERT INTO BOOK VALUES('PHP',4,'PAMIR',2014,'MC',700)
+
+1 row created.
+
+
+
+SQL> SELECT TITLE,ISBN FROM BOOK WHERE YEAR_OF_PUB=2014;
+
+TITLE          ISBN
+-------- ----------
+JAVA              3
+PHP               4
+
+SQL> SELECT TITLE,PRICE FROM BOOK WHERE PUBLISHER='XYZ' AND YEAR_OF_PUB>=2012 AND YEAR_OF_PUB<=2014;
+
+TITLE         PRICE
+-------- ----------
+C++             800
+JAVA            900
+

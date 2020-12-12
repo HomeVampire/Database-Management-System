@@ -1,0 +1,203 @@
+VIVA TOPIC 
+SUB-QUERY VS JOINING
+
+===========================================================================
+CHECK CONSTRAINT
+===========================================================================
+CREATE TABLE PERSON(
+NAME VARCHAR2(10),
+AGE NUMBER(3),
+CHECK (AGE>17)
+);
+
+INSERT INTO PERSON VALUES('DEEP',20);
+INSERT INTO PERSON VALUES('DEEPAK',27);
+
+SQL> DESC PERSON;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(10)
+ AGE                                                NUMBER(3)
+
+SQL> SELECT * FROM PERSON;
+
+NAME              AGE
+---------- ----------
+DEEP               20
+DEEPAK             27
+
+DROP TABLE PERSON;
+
+===========================================================================
+CREATE TABLE PERSON(
+NAME VARCHAR2(10),
+AGE NUMBER(3)
+);
+
+ALTER TABLE PERSON ADD CHECK(AGE>17);
+
+INSERT INTO PERSON VALUES('DEEP',20);
+INSERT INTO PERSON VALUES('DEEPAK',27);
+INSERT INTO PERSON VALUES('DEEP',20);
+INSERT INTO PERSON VALUES('DEEPAK',17);
+
+TRUNCATE TABLE PERSON;	##DELETE WHOLE DATA FROM A TABLE
+
+===========================================================================
+CREATE TABLE VT(
+NAME VARCHAR2(10),
+AGE NUMBER(3),
+SALARY NUMBER(6)
+);
+
+SQL> DESC VT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(10)
+ AGE                                                NUMBER(3)
+ SALARY                                             NUMBER(6)
+
+ALTER TABLE VT ADD PRIMARY KEY (NAME);
+
+
+SQL> DESC VT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                      NOT NULL VARCHAR2(10)
+ AGE                                                NUMBER(3)
+ SALARY                                             NUMBER(6)
+
+INSERT INTO VT VALUES('A',20,25000);
+INSERT INTO VT VALUES('B',35,40000);
+INSERT INTO VT VALUES('C',40,70000);
+INSERT INTO VT VALUES('D',60,90000);
+INSERT INTO VT VALUES('E',49,50000);
+
+
+NAME              AGE     SALARY
+---------- ---------- ----------
+A                  20      25000
+B                  35      40000
+C                  40      70000
+D                  60      90000
+E                  49      50000
+
+CREATE VIEW V1 AS SELECT NAME,AGE FROM VT;
+
+SQL> SELECT * FROM V1;
+
+NAME              AGE
+---------- ----------
+A                  20
+B                  35
+C                  40
+D                  60
+E                  49
+
+INSERT INTO V1 VALUES('F',55);
+
+SQL> SELECT * FROM VT;
+
+NAME              AGE     SALARY
+---------- ---------- ----------
+A                  20      25000
+B                  35      40000
+C                  40      70000
+D                  60      90000
+E                  49      50000
+F                  55
+
+CREATE TABLE VT(
+ID NUMBER(3) PRIMARY KEY,
+NAME VARCHAR2(10),
+AGE NUMBER(3),
+SALARY NUMBER(6)
+);
+
+
+SQL> DESC VT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(3)
+ NAME                                               VARCHAR2(10)
+ AGE                                                NUMBER(3)
+ SALARY                                             NUMBER(6)
+
+INSERT INTO VT VALUES(11,'A',20,25000);
+INSERT INTO VT VALUES(22,'B',35,40000);
+INSERT INTO VT VALUES(33,'C',40,70000);
+INSERT INTO VT VALUES(44,'D',60,90000);
+INSERT INTO VT VALUES(55,'E',49,50000);
+
+
+SQL> SELECT * FROM VT;
+
+        ID NAME              AGE     SALARY
+---------- ---------- ---------- ----------
+        11 A                  20      25000
+        22 B                  35      40000
+        33 C                  40      70000
+        44 D                  60      90000
+        55 E                  49      50000
+
+CREATE VIEW V1 AS SELECT ID,SALARY FROM VT;
+CREATE VIEW V2 AS SELECT ID,AGE FROM VT;
+
+SQL> SELECT * FROM V1;
+
+        ID     SALARY
+---------- ----------
+        11      25000
+        22      40000
+        33      70000
+        44      90000
+        55      50000
+
+SQL> SELECT * FROM V2;
+
+        ID        AGE
+---------- ----------
+        11         20
+        22         35
+        33         40
+        44         60
+        55         49
+
+UPDATE V1 SET SALARY=SALARY+10000 WHERE SALARY>=50000;
+
+
+SQL> SELECT * FROM V1;
+
+        ID     SALARY
+---------- ----------
+        11      25000
+        22      40000
+        33      80000
+        44     100000
+        55      60000
+
+SELECT * FROM VT;
+
+        ID NAME              AGE     SALARY
+---------- ---------- ---------- ----------
+        11 A                  20      25000
+        22 B                  35      40000
+        33 C                  40      80000
+        44 D                  60     100000
+        55 E                  49      60000
+
+INSERT INTO V2 VALUES(66,20);
+
+
+SQL> SELECT * FROM VT;
+
+        ID NAME              AGE     SALARY
+---------- ---------- ---------- ----------
+        11 A                  20      25000
+        22 B                  35      40000
+        33 C                  40      80000
+        44 D                  60     100000
+        55 E                  49      60000
+        66                    20
+
+ALTER VIEW V1 ADD CHECK(SALARY>5000);

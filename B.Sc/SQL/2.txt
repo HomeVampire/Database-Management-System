@@ -1,0 +1,20 @@
+SET SERVEROUTPUT ON
+DECLARE
+    PRINCIPLE  NUMBER(9, 2); 
+    RATE  NUMBER(9, 2);  
+    TIME  NUMBER(9, 2);  
+    si NUMBER(9, 2); 
+    ci NUMBER(9, 2); 
+BEGIN 
+    PRINCIPLE:=&PRINCIPLE; 
+    RATE:=&RATE; 
+    TIME:=&TIME; 
+    si:=(PRINCIPLE*RATE*TIME)/100; 
+  
+    ci:=PRINCIPLE*Power(1+(RATE/100),TIME); 
+  
+    DBMS_OUTPUT.PUT_LINE('Simple Interest = '||si); 
+  
+    DBMS_OUTPUT.PUT_LINE('Compound interest = '|| ci); 
+END;
+/

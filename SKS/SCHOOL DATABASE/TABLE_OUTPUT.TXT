@@ -1,0 +1,165 @@
+SQL> SELECT * FROM STUDENT;
+
+       SID FNAME      LNAME        ADDRESS                CITY                  
+---------- ---------- ------------ ---------------------- ------------          
+       PIN      PHONE      CLASS S CLA                                          
+---------- ---------- ---------- - ---                                          
+      8930 SAURO      GHOSAL       15/2 NEW ALIPUR        KOLKATA               
+    700025   24750255         12 C T02                                          
+                                                                                
+      9011 DEBRAJ     GHOSH        772 LAKE TOWN          KOLKATA               
+    700089   24348580         11 D T01                                          
+                                                                                
+      9025 SAYAN      SEN          29/A EAST ROAD         KOLKATA               
+    700032   25348580         11 E T05                                          
+                                                                                
+
+       SID FNAME      LNAME        ADDRESS                CITY                  
+---------- ---------- ------------ ---------------------- ------------          
+       PIN      PHONE      CLASS S CLA                                          
+---------- ---------- ---------- - ---                                          
+      9026 REEJU      SEN          9B N.S.C.ROAD          KOLKATA               
+    700035   24117137         12 C T03                                          
+                                                                                
+      9150 DEBARGHA   ROY          B 129 LAKEGARDENS      KOLKATA               
+    700045   65182152         11 D T01                                          
+                                                                                
+      9175 YOGESH     KOTHARI      17 A.K. ROAD           HOWRAH                
+    600012   23588326         11 E T11                                          
+                                                                                
+
+       SID FNAME      LNAME        ADDRESS                CITY                  
+---------- ---------- ------------ ---------------------- ------------          
+       PIN      PHONE      CLASS S CLA                                          
+---------- ---------- ---------- - ---                                          
+      9176 RUBESH     SARKAR       P.K. ROY SARANI        HOWRAH                
+    600023   23710027         12 E T05                                          
+                                                                                
+      9234 SOURAV     PAL          AE52 SALT LAKE         KOLKATA               
+    700090   24407890         12 C T02                                          
+                                                                                
+      9458 ANSHU      PAL          21 SOUTH END ROAD      KOLKATA               
+    700019   24656677         12 E T05                                          
+                                                                                
+
+9 rows selected.
+
+SQL> SELECT * FROM TEACHER;
+
+TID FNAME      LNAME        ADDRESS                CITY                PIN      
+--- ---------- ------------ ---------------------- ------------ ----------      
+     PHONE DOB       SU                                                         
+---------- --------- --                                                         
+T01 SATYEN     BOSE         29 SANTOSHPUR ROAD     KOLKATA          700034      
+  24220211 12-OCT-59 S8                                                         
+                                                                                
+T02 P.C.       ROY          21/3 N.S.C ROAD        BARACKPORE       710074      
+  24648440 21-JUN-55 S3                                                         
+                                                                                
+T03 PRABIR     MAJUMDER     52/A  SURVEY PARK      KOLKATA          700034      
+  24221459 08-SEP-52 S7                                                         
+                                                                                
+
+TID FNAME      LNAME        ADDRESS                CITY                PIN      
+--- ---------- ------------ ---------------------- ------------ ----------      
+     PHONE DOB       SU                                                         
+---------- --------- --                                                         
+T04 JOYDIP     BHATT        387 LAKE GARDENS       KOLKATA          700045      
+  24222858 02-SEP-71 S4                                                         
+                                                                                
+T05 PULOK      KUNDU        22/B SURVEY  PARK      KOLKATA          700034      
+  24222211 10-OCT-65 S9                                                         
+                                                                                
+T06 TUHIN      ROY          18 R. AVENUE           BUDGE BUDGE      720120      
+  24645346 09-FEB-49 S2                                                         
+                                                                                
+
+TID FNAME      LNAME        ADDRESS                CITY                PIN      
+--- ---------- ------------ ---------------------- ------------ ----------      
+     PHONE DOB       SU                                                         
+---------- --------- --                                                         
+T07 AVIK       DEY          82/6 BALLYGUNGE        KOLKATA          700019      
+  24403547 02-JUL-44 S1                                                         
+                                                                                
+T08 SIMI       TALWAR       30/B K.ROY ROAD        BARACKPORE       710025      
+  24540137 19-DEC-65 S6                                                         
+                                                                                
+T11 ARIJIT     HAZRA        2 NEW BALLYGUNGE       KOLKATA          700019      
+  24408880 22-MAY-75 S3                                                         
+                                                                                
+
+TID FNAME      LNAME        ADDRESS                CITY                PIN      
+--- ---------- ------------ ---------------------- ------------ ----------      
+     PHONE DOB       SU                                                         
+---------- --------- --                                                         
+T12 TRINANJAN  DUTT         AB46 SALT LAKE         KOLKATA          700090      
+  24113042 22-AUG-50 S5                                                         
+                                                                                
+
+10 rows selected.
+
+SQL> SELECT * FROM MARKS;
+
+       SID EXAM             YEAR FL SL EL EL EL OP                              
+---------- ---------- ---------- -- -- -- -- -- --                              
+      8930 SELECTION        2009 55 61 80 78 90 88                              
+      9011 ANNUAL           2009 57 57 87 78 87 75                              
+      9025 SELECTION        2009 64 60 89 75 84 89                              
+      9026 ANNUAL           2009 61 23 75 76 82 93                              
+      9150 ANNUAL           2009 56 59 79 74 78 90                              
+      9175 ANNUAL           2009 29 64 82 66 80 79                              
+      9176 SELECTION        2009 55 28 90 79 87 87                              
+      9234 SELECTION        2009 62 60 80 76 81 85                              
+      9458 SELECTION        2009 65 60 88 95 90 97                              
+
+9 rows selected.
+
+SQL> SELECT * FROM SUBJECT;
+
+SU SUBNAME     HOD     THEORY        LAB                                        
+-- ----------- --- ---------- ----------                                        
+S1 BENGALI     T07        100          0                                        
+S2 BIOLOGY     T06         80         20                                        
+S3 CHEMISTRY   T02         80         20                                        
+S4 COMPUTER    T04         70         30                                        
+S5 ENGLISH     T12        100          0                                        
+S6 HINDI       T08        100          0                                        
+S7 MATHEMATICS T03        100          0                                        
+S8 PHYSICS     T01         80         20                                        
+S9 STATISTICS  T05         80         20                                        
+
+9 rows selected.
+
+SQL> SELECT * FROM COMBINATION;
+
+       SID FL SL EL EL EL OP                                                    
+---------- -- -- -- -- -- --                                                    
+      8930 S1 S5 S8 S3 S7 S4                                                    
+      9011 S5 S1 S8 S3 S7 S9                                                    
+      9025 S1 S5 S8 S3 S7 S4                                                    
+      9026 S1 S5 S8 S3 S7 S2                                                    
+      9150 S5 S1 S8 S3 S7 S9                                                    
+      9175 S6 S5 S8 S3 S7 S2                                                    
+      9176 S1 S5 S8 S3 S7 S9                                                    
+      9234 S1 S5 S8 S3 S7 S4                                                    
+      9458 S5 S1 S8 S3 S7 S4                                                    
+
+9 rows selected.
+
+SQL> SELECT * FROM FEES;
+
+       SID       YEAR      MONTH     AMOUNT                                     
+---------- ---------- ---------- ----------                                     
+      8930       2009          1        520                                     
+      9011       2009          1        500                                     
+      9025       2009          1        520                                     
+      9026       2009          1        530                                     
+      9150       2009          1        500                                     
+      9175       2009          1        530                                     
+      9176       2009          1        530                                     
+      9234       2009          1        520                                     
+      9458       2009          1        520                                     
+
+9 rows selected.
+
+SQL> SPOOL OFF;
